@@ -2199,6 +2199,296 @@ body {
 .review-verified { font-family: var(--font-mono); font-size: 10px; color: var(--sns-forest); margin-top: var(--sp-2); }
 
 /* ============================================================
+   MOBILE FILTER BOTTOM SHEET
+   ============================================================ */
+.mobile-sheet-demo {
+  position: relative;
+  background: var(--sns-cream-mid);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  height: 560px;
+  border: var(--border-light);
+}
+.mobile-sheet-bg {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-2);
+  padding: var(--sp-3);
+  align-content: start;
+}
+.mobile-sheet-bg-card {
+  background: var(--sns-white);
+  border-radius: var(--radius-md);
+  aspect-ratio: 0.85;
+  border: var(--border-hairline);
+  opacity: 0.4;
+}
+.mobile-sheet-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(28,26,23,0.35);
+  border-radius: var(--radius-lg);
+}
+.mobile-sheet {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: var(--sns-white);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: var(--sp-2) 0 var(--sp-6);
+  box-shadow: 0 -8px 32px rgba(28,26,23,0.14);
+}
+.mobile-sheet-handle {
+  width: 36px; height: 4px;
+  background: var(--sns-stone-200);
+  border-radius: var(--radius-full);
+  margin: 0 auto var(--sp-4);
+}
+.mobile-sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--sp-5) var(--sp-4);
+  border-bottom: var(--border-hairline);
+  margin-bottom: var(--sp-1);
+}
+.mobile-sheet-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 400;
+  letter-spacing: var(--tracking-snug);
+}
+.mobile-sheet-reset {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--sns-forest);
+  background: none; border: none;
+  cursor: pointer; padding: 0;
+}
+.mobile-sheet-body {
+  padding: 0 var(--sp-5);
+  max-height: 320px;
+  overflow-y: auto;
+}
+.mobile-sheet-body::-webkit-scrollbar { display: none; }
+.mobile-sheet-section {
+  padding: var(--sp-4) 0;
+  border-bottom: var(--border-hairline);
+}
+.mobile-sheet-section:last-child { border-bottom: none; }
+.mobile-sheet-section-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--sns-stone-400);
+  margin-bottom: var(--sp-3);
+}
+.mobile-sheet-footer {
+  padding: var(--sp-4) var(--sp-5) 0;
+  display: flex;
+  gap: var(--sp-3);
+}
+
+/* ============================================================
+   MOBILE PDP LAYOUT
+   ============================================================ */
+.mobile-pdp-frame {
+  width: 320px;
+  background: var(--sns-white);
+  border-radius: var(--radius-xl);
+  border: 2px solid var(--sns-stone-200);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  flex-shrink: 0;
+}
+.mobile-pdp-gallery {
+  aspect-ratio: 1;
+  background: var(--sns-cream-mid);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 96px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--sns-stone-200);
+}
+.mobile-pdp-gallery-dots {
+  position: absolute;
+  bottom: var(--sp-3);
+  left: 50%; transform: translateX(-50%);
+  display: flex; gap: var(--sp-1);
+}
+.mobile-pdp-gallery-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--sns-stone-300);
+}
+.mobile-pdp-gallery-dot.active { background: var(--sns-ink); }
+.mobile-pdp-scroll {
+  padding: var(--sp-5) var(--sp-5) var(--sp-24);
+  overflow-y: auto;
+  max-height: 420px;
+}
+.mobile-pdp-scroll::-webkit-scrollbar { display: none; }
+.mobile-pdp-brand {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--sns-stone-300);
+  margin-bottom: var(--sp-1);
+}
+.mobile-pdp-name {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 300;
+  color: var(--sns-ink);
+  letter-spacing: var(--tracking-snug);
+  line-height: var(--leading-snug);
+  margin-bottom: var(--sp-2);
+}
+.mobile-pdp-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+}
+.mobile-pdp-price {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--sns-ink);
+}
+.mobile-pdp-price-was {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--sns-stone-300);
+  text-decoration: line-through;
+}
+.mobile-pdp-variants-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--sns-stone-400);
+  margin-bottom: var(--sp-2);
+}
+.mobile-pdp-variant-row {
+  display: flex;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-5);
+}
+.mobile-pdp-variant {
+  padding: var(--sp-2) var(--sp-3);
+  border: var(--border-mid);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--sns-ink-muted);
+  background: var(--sns-white);
+}
+.mobile-pdp-variant.active { border-color: var(--sns-ink); color: var(--sns-ink); font-weight: 500; }
+.mobile-pdp-desc {
+  font-size: 12px;
+  color: var(--sns-stone-500);
+  line-height: 1.7;
+}
+.mobile-pdp-sticky-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: var(--sns-white);
+  border-top: var(--border-light);
+  padding: var(--sp-3) var(--sp-5);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  box-shadow: 0 -4px 16px rgba(28,26,23,0.08);
+}
+.mobile-pdp-sticky-info { flex: 1; }
+.mobile-pdp-sticky-name { font-size: 12px; font-weight: 500; color: var(--sns-ink); }
+.mobile-pdp-sticky-price { font-family: var(--font-mono); font-size: 12px; color: var(--sns-stone-500); }
+.mobile-pdp-sticky-express {
+  display: flex;
+  gap: var(--sp-2);
+  padding: 0 var(--sp-5) var(--sp-3);
+  border-top: none;
+}
+
+/* ============================================================
+   CART CROSS-SELL BLOCK
+   ============================================================ */
+.cart-crosssell {
+  padding: var(--sp-4) var(--sp-6);
+  border-top: var(--border-hairline);
+  background: var(--sns-cream-mid);
+}
+.cart-crosssell-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--sns-stone-400);
+  margin-bottom: var(--sp-3);
+}
+.cart-crosssell-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.cart-crosssell-img {
+  width: 52px; height: 52px;
+  background: var(--sns-white);
+  border-radius: var(--radius-md);
+  border: var(--border-hairline);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--text-lg);
+  color: var(--sns-stone-300);
+  flex-shrink: 0;
+}
+.cart-crosssell-info { flex: 1; }
+.cart-crosssell-brand {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--sns-stone-300);
+}
+.cart-crosssell-name {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--sns-ink);
+  margin: 1px 0;
+}
+.cart-crosssell-price {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--sns-stone-500);
+}
+.cart-crosssell-add {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--sns-forest);
+  background: var(--sns-forest-lite);
+  border: 1px solid var(--sns-forest);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-2) var(--sp-3);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--dur-fast) var(--ease-out);
+  flex-shrink: 0;
+}
+.cart-crosssell-add:hover { background: var(--sns-forest); color: var(--sns-white); }
+
+/* ============================================================
    UTILITY
    ============================================================ */
 .mt-4  { margin-top: var(--sp-4); }
@@ -2251,6 +2541,11 @@ body {
     <a href="#stepper"    class="ds-nav-link">Checkout Stepper</a>
     <a href="#datatable"  class="ds-nav-link">Data Table & Stats</a>
     <a href="#pdp"        class="ds-nav-link">Product Detail Page</a>
+
+    <div class="ds-nav-section-label">Missing Pieces</div>
+    <a href="#mobilefilter"  class="ds-nav-link">Mobile Filter Sheet</a>
+    <a href="#mobilepdp"     class="ds-nav-link">Mobile PDP</a>
+    <a href="#crosssell"     class="ds-nav-link">Cart Cross-sell</a>
   </nav>
 
   <!-- ===================== MAIN ===================== -->
@@ -3498,6 +3793,335 @@ body {
             </div>
             <div class="review-text">As a tattoo artist I recommend this to all my clients for long sessions. Consistent results, no skin reaction issues, and the price point is great for bulk ordering.</div>
             <div class="review-verified">✓ Verified purchase</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== 18. MOBILE FILTER BOTTOM SHEET ===== -->
+    <section class="ds-section" id="mobilefilter">
+      <div class="ds-section-header">
+        <div class="ds-section-num">18</div>
+        <h2 class="ds-section-title">Mobile Filter Bottom Sheet</h2>
+        <p class="ds-section-desc">On mobile (&lt;768px) the sidebar filter panel is replaced by a bottom sheet that slides up from the screen edge. Triggered by the "Filter" button in the collection toolbar. Overlay dims the product grid behind it. Handle bar for drag-to-dismiss.</p>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Bottom Sheet — Open State</div>
+        <div class="ds-grid-2 gap-4" style="align-items:start">
+
+          <div class="mobile-sheet-demo">
+            <!-- dimmed product grid behind -->
+            <div class="mobile-sheet-bg">
+              <div class="mobile-sheet-bg-card"></div>
+              <div class="mobile-sheet-bg-card" style="background:var(--sns-forest-lite)"></div>
+              <div class="mobile-sheet-bg-card" style="background:var(--sns-gold-lite)"></div>
+              <div class="mobile-sheet-bg-card"></div>
+            </div>
+            <!-- overlay -->
+            <div class="mobile-sheet-overlay"></div>
+            <!-- the sheet itself -->
+            <div class="mobile-sheet">
+              <div class="mobile-sheet-handle"></div>
+              <div class="mobile-sheet-header">
+                <div class="mobile-sheet-title">Filters</div>
+                <button class="mobile-sheet-reset">Reset all</button>
+              </div>
+              <div class="mobile-sheet-body">
+                <div class="mobile-sheet-section">
+                  <div class="mobile-sheet-section-title">Category</div>
+                  <div class="filter-options">
+                    <span class="filter-opt active">Before</span>
+                    <span class="filter-opt">During</span>
+                    <span class="filter-opt">After Care</span>
+                    <span class="filter-opt">Accessories</span>
+                  </div>
+                </div>
+                <div class="mobile-sheet-section">
+                  <div class="mobile-sheet-section-title">Brand</div>
+                  <div class="filter-options">
+                    <span class="filter-opt active">TKTX</span>
+                    <span class="filter-opt">Dr. Numb</span>
+                    <span class="filter-opt">Zensa</span>
+                    <span class="filter-opt">Hush</span>
+                    <span class="filter-opt">Emla</span>
+                  </div>
+                </div>
+                <div class="mobile-sheet-section">
+                  <div class="mobile-sheet-section-title">Concentration</div>
+                  <div class="filter-options">
+                    <span class="filter-opt">4%</span>
+                    <span class="filter-opt active">5%</span>
+                    <span class="filter-opt">10%</span>
+                    <span class="filter-opt">Max Strength</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mobile-sheet-footer">
+                <button class="btn btn-ghost" style="flex:1">Cancel</button>
+                <button class="btn btn-primary" style="flex:2">Show 48 Products</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="ds-flex-col">
+            <div class="ds-sub-title">Behaviour Rules</div>
+            <table class="token-table">
+              <thead><tr><th>Trigger</th><th>Behaviour</th></tr></thead>
+              <tbody>
+                <tr><td>Tap "Filter" toolbar button</td><td>Sheet slides up from bottom, overlay fades in</td></tr>
+                <tr><td>Tap overlay</td><td>Sheet dismisses, filters unchanged</td></tr>
+                <tr><td>Drag handle downward</td><td>Sheet dismisses on release past 40% threshold</td></tr>
+                <tr><td>Tap "Cancel"</td><td>Sheet dismisses, filters unchanged</td></tr>
+                <tr><td>Tap "Show N Products"</td><td>Sheet dismisses, collection reloads with filters applied</td></tr>
+                <tr><td>Tap "Reset all"</td><td>All chips deselected, count resets to total</td></tr>
+              </tbody>
+            </table>
+
+            <div class="ds-sub-title mt-6">Collection Toolbar (Mobile)</div>
+            <div style="background:var(--sns-white);border:var(--border-light);border-radius:var(--radius-md);padding:var(--sp-3) var(--sp-4);display:flex;align-items:center;justify-content:space-between;gap:var(--sp-3)">
+              <div style="font-size:var(--text-xs);color:var(--sns-stone-400);font-family:var(--font-mono)">48 products</div>
+              <div style="display:flex;gap:var(--sp-2)">
+                <button class="btn btn-ghost btn-sm" style="display:flex;align-items:center;gap:4px;padding:6px 12px">
+                  <span style="font-size:12px">⚙</span> Filter
+                  <span class="badge badge-forest" style="padding:1px 5px;font-size:9px">2</span>
+                </button>
+                <button class="btn btn-ghost btn-sm" style="display:flex;align-items:center;gap:4px;padding:6px 12px">
+                  <span style="font-size:12px">↕</span> Sort
+                </button>
+              </div>
+            </div>
+            <div class="notice notice-info" style="margin-top:var(--sp-2)">
+              <span class="notice-icon">ℹ</span>
+              <div class="notice-body">
+                <div class="notice-title">Active filter count badge</div>
+                <div class="notice-text">The green badge on the Filter button shows how many filters are currently active. Resets to zero when all filters are cleared. Updates live as chips are toggled inside the sheet.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 19. MOBILE PDP LAYOUT ===== -->
+    <section class="ds-section" id="mobilepdp">
+      <div class="ds-section-header">
+        <div class="ds-section-num">19</div>
+        <h2 class="ds-section-title">Mobile PDP Layout</h2>
+        <p class="ds-section-desc">On mobile the 2-column desktop PDP collapses to a single scrollable column. Gallery sits at the top full-width. Product info scrolls beneath it. The sticky ATC bar is always pinned to the bottom — overlaying the scroll content — so Add to Cart is always one tap away regardless of scroll position.</p>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Mobile PDP — Full Layout</div>
+        <div style="display:flex;gap:var(--sp-10);align-items:flex-start;flex-wrap:wrap">
+
+          <div style="position:relative">
+            <div class="mobile-pdp-frame">
+              <!-- Status bar -->
+              <div class="mobile-status">
+                <span class="mobile-status-time">9:41</span>
+                <span class="mobile-status-icons">▐▐▐ ☁ 🔋</span>
+              </div>
+              <!-- Mini nav -->
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--sp-2) var(--sp-4);border-bottom:var(--border-hairline)">
+                <span style="font-size:18px;color:var(--sns-ink-muted)">←</span>
+                <span style="font-family:var(--font-mono);font-size:9px;text-transform:uppercase;letter-spacing:var(--tracking-wider);color:var(--sns-stone-400)">Before Session</span>
+                <span style="font-size:18px;color:var(--sns-ink-muted)">♡</span>
+              </div>
+              <!-- Gallery -->
+              <div class="mobile-pdp-gallery">
+                T
+                <div class="mobile-pdp-gallery-dots">
+                  <div class="mobile-pdp-gallery-dot active"></div>
+                  <div class="mobile-pdp-gallery-dot"></div>
+                  <div class="mobile-pdp-gallery-dot"></div>
+                  <div class="mobile-pdp-gallery-dot"></div>
+                  <div class="mobile-pdp-gallery-dot"></div>
+                </div>
+              </div>
+              <!-- Thumb strip -->
+              <div style="display:flex;gap:var(--sp-2);padding:var(--sp-2) var(--sp-4);border-bottom:var(--border-hairline);overflow-x:auto">
+                <div style="width:44px;height:44px;background:var(--sns-cream-mid);border-radius:var(--radius-sm);border:2px solid var(--sns-ink);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-style:italic;color:var(--sns-stone-300)">T</div>
+                <div style="width:44px;height:44px;background:var(--sns-cream-mid);border-radius:var(--radius-sm);border:var(--border-hairline);flex-shrink:0"></div>
+                <div style="width:44px;height:44px;background:var(--sns-cream-mid);border-radius:var(--radius-sm);border:var(--border-hairline);flex-shrink:0"></div>
+                <div style="width:44px;height:44px;background:var(--sns-forest-lite);border-radius:var(--radius-sm);border:var(--border-hairline);flex-shrink:0"></div>
+                <div style="width:44px;height:44px;background:var(--sns-cream-deep);border-radius:var(--radius-sm);border:var(--border-hairline);flex-shrink:0"></div>
+              </div>
+              <!-- Scrollable info -->
+              <div class="mobile-pdp-scroll">
+                <div class="mobile-pdp-brand">TKTX</div>
+                <div class="mobile-pdp-name">40% Numbing Cream</div>
+                <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-3)">
+                  <span class="stars" style="font-size:11px">★★★★★</span>
+                  <span style="font-family:var(--font-mono);font-size:10px;color:var(--sns-stone-400)">(248)</span>
+                </div>
+                <div class="mobile-pdp-price-row">
+                  <span class="mobile-pdp-price">$24.99</span>
+                  <span class="mobile-pdp-price-was">$29.99</span>
+                  <span class="badge badge-gold" style="font-size:9px">Sale</span>
+                </div>
+                <div style="font-size:11px;color:var(--sns-forest);margin-bottom:var(--sp-4)">✓ Free shipping over $100</div>
+                <div class="mobile-pdp-variants-label">Size</div>
+                <div class="mobile-pdp-variant-row">
+                  <div class="mobile-pdp-variant active">10g</div>
+                  <div class="mobile-pdp-variant">30g</div>
+                  <div class="mobile-pdp-variant">100g</div>
+                </div>
+                <div style="display:flex;gap:var(--sp-3);margin-bottom:var(--sp-5);padding:var(--sp-3) 0;border-top:var(--border-hairline);border-bottom:var(--border-hairline)">
+                  <div style="font-size:10px;color:var(--sns-stone-500);display:flex;align-items:center;gap:4px">🔒 Secure</div>
+                  <div style="font-size:10px;color:var(--sns-stone-500);display:flex;align-items:center;gap:4px">↩ 30-day returns</div>
+                  <div style="font-size:10px;color:var(--sns-stone-500);display:flex;align-items:center;gap:4px">📦 Ships 24h</div>
+                </div>
+                <div class="mobile-pdp-desc">Formulated with 4% lidocaine for fast-acting, long-lasting numbing relief. Apply 45–60 min before session. Cover with cling wrap for best results.</div>
+              </div>
+              <!-- Sticky ATC bar — always pinned -->
+              <div class="mobile-pdp-sticky-bar">
+                <div class="mobile-pdp-sticky-info">
+                  <div class="mobile-pdp-sticky-name">TKTX 40% — 10g</div>
+                  <div class="mobile-pdp-sticky-price">$24.99</div>
+                </div>
+                <div class="qty-stepper" style="transform:scale(0.85);transform-origin:right">
+                  <button class="qty-btn">−</button><span class="qty-val">1</span><button class="qty-btn">+</button>
+                </div>
+                <button class="btn btn-primary btn-sm">Add</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="ds-flex-col" style="flex:1;min-width:280px">
+            <div class="ds-sub-title">Desktop → Mobile Collapse Rules</div>
+            <table class="token-table">
+              <thead><tr><th>Desktop Element</th><th>Mobile Treatment</th></tr></thead>
+              <tbody>
+                <tr><td>2-column grid layout</td><td>Single column, gallery first</td></tr>
+                <tr><td>Inline ATC + qty stepper</td><td>Hidden — replaced by sticky bottom bar</td></tr>
+                <tr><td>Side-by-side trust badges</td><td>Single row, icon + short label, 3 across</td></tr>
+                <tr><td>Tabbed content (Description…)</td><td>Accordion-style — tap to expand each section</td></tr>
+                <tr><td>Review summary + cards</td><td>Collapsed — "Show 248 reviews" CTA, tap to expand</td></tr>
+                <tr><td>Related products strip</td><td>Horizontal scroll strip, 2.5 cards visible</td></tr>
+                <tr><td>Breadcrumb</td><td>Single back arrow + parent category name</td></tr>
+                <tr><td>Image gallery (lightbox)</td><td>Swipeable, dots indicator, double-tap to zoom</td></tr>
+              </tbody>
+            </table>
+
+            <div class="ds-sub-title mt-6">Sticky ATC Bar Behaviour</div>
+            <table class="token-table">
+              <thead><tr><th>State</th><th>Behaviour</th></tr></thead>
+              <tbody>
+                <tr><td>On page load</td><td>Always visible, pinned to bottom above bottom nav</td></tr>
+                <tr><td>Variant selected</td><td>Bar updates: name + price update live, no page reload</td></tr>
+                <tr><td>Qty changed</td><td>Price in bar updates live (qty × unit price)</td></tr>
+                <tr><td>Tap Add</td><td>Button shows spinner → "Added ✓" for 1.5s → resets</td></tr>
+                <tr><td>Out of stock</td><td>Bar shows "Notify Me" instead of "Add"</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 20. CART CROSS-SELL BLOCK ===== -->
+    <section class="ds-section" id="crosssell">
+      <div class="ds-section-header">
+        <div class="ds-section-num">20</div>
+        <h2 class="ds-section-title">Cart Cross-sell Block</h2>
+        <p class="ds-section-desc">One complementary product recommendation shown in the cart drawer footer — between the items list and the checkout CTA. Drives AOV by surfacing a relevant add-on at the moment of highest purchase intent. Logic: if cart contains a "Before" product, suggest an "After" product, and vice versa.</p>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Cart Drawer — With Cross-sell</div>
+        <div class="ds-grid-2 gap-4" style="align-items:start">
+
+          <div class="cart-drawer">
+            <div class="cart-header">
+              <div style="display:flex;align-items:center;gap:var(--sp-3)">
+                <div class="cart-title">Your Cart</div>
+                <span class="cart-count-pill">2 items</span>
+              </div>
+              <button class="cart-close">✕</button>
+            </div>
+            <div class="shipping-bar">
+              <div class="shipping-bar-text">🎉 You're <strong>$17.02 away</strong> from free shipping</div>
+              <div class="shipping-bar-track"><div class="shipping-bar-fill" style="width:83%"></div></div>
+            </div>
+            <div class="cart-items">
+              <div class="cart-item">
+                <div class="cart-item-img">T</div>
+                <div class="cart-item-info">
+                  <div class="cart-item-brand">TKTX</div>
+                  <div class="cart-item-name">40% Numbing Cream</div>
+                  <div class="cart-item-variant">30g · Before Session</div>
+                  <div class="cart-item-actions">
+                    <div class="qty-stepper" style="transform:scale(0.85);transform-origin:left">
+                      <button class="qty-btn">−</button><span class="qty-val">2</span><button class="qty-btn">+</button>
+                    </div>
+                    <span class="cart-item-price">$49.98</span>
+                  </div>
+                  <button class="cart-remove">Remove</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- CROSS-SELL BLOCK -->
+            <div class="cart-crosssell">
+              <div class="cart-crosssell-label">Pairs well with</div>
+              <div class="cart-crosssell-item">
+                <div class="cart-crosssell-img">H</div>
+                <div class="cart-crosssell-info">
+                  <div class="cart-crosssell-brand">Hush</div>
+                  <div class="cart-crosssell-name">Anesthetic Healing Balm</div>
+                  <div class="cart-crosssell-price">$18.99 · After Care</div>
+                </div>
+                <button class="cart-crosssell-add">+ Add</button>
+              </div>
+            </div>
+
+            <div class="cart-footer">
+              <div class="cart-subtotal">
+                <span class="cart-subtotal-label">Subtotal</span>
+                <span class="cart-subtotal-value">$49.98</span>
+              </div>
+              <div class="cart-shipping-note">Shipping calculated at checkout · Free over $100</div>
+              <button class="cart-cta">Checkout — $49.98</button>
+              <div class="cart-express">
+                <button class="express-btn shop-pay">Shop Pay</button>
+                <button class="express-btn">Apple Pay</button>
+                <button class="express-btn">G Pay</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="ds-flex-col">
+            <div class="ds-sub-title">Cross-sell Logic</div>
+            <table class="token-table">
+              <thead><tr><th>Cart Contains</th><th>Suggest</th></tr></thead>
+              <tbody>
+                <tr><td>Only "Before" products</td><td>An "After Care" product (healing balm, spray)</td></tr>
+                <tr><td>Only "After" products</td><td>A "Before" numbing cream</td></tr>
+                <tr><td>Mixed Before + After</td><td>A "During" product (open wound gel)</td></tr>
+                <tr><td>Single brand only</td><td>Different brand — introduce variety</td></tr>
+                <tr><td>Item already in cart</td><td>Skip, show next eligible product</td></tr>
+              </tbody>
+            </table>
+
+            <div class="ds-sub-title mt-6">Implementation Note</div>
+            <div class="notice notice-info">
+              <span class="notice-icon">ℹ</span>
+              <div class="notice-body">
+                <div class="notice-title">Dawn theme — Liquid edit required</div>
+                <div class="notice-text">The cross-sell block sits between <code style="font-family:var(--font-mono);font-size:11px;background:var(--sns-stone-100);padding:1px 4px;border-radius:2px">cart-items</code> and <code style="font-family:var(--font-mono);font-size:11px;background:var(--sns-stone-100);padding:1px 4px;border-radius:2px">cart-footer</code> in Dawn's <code style="font-family:var(--font-mono);font-size:11px;background:var(--sns-stone-100);padding:1px 4px;border-radius:2px">cart-drawer.liquid</code>. Logic is a Liquid conditional on cart item tags. The featured collection block in Dawn's theme settings can also be used as a no-code approximation, though it doesn't support tag-based conditional logic.</div>
+              </div>
+            </div>
+
+            <div class="ds-sub-title mt-6">AOV Impact</div>
+            <div class="notice notice-success">
+              <span class="notice-icon">✓</span>
+              <div class="notice-body">
+                <div class="notice-title">Shipping bar + cross-sell = double AOV driver</div>
+                <div class="notice-text">The $100 free shipping bar creates urgency to add more. The cross-sell block provides the specific item to add. Together these two elements in the cart drawer are the highest-ROI AOV optimisation available without a paid upsell app.</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
