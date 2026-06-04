@@ -2489,6 +2489,746 @@ body {
 .cart-crosssell-add:hover { background: var(--sns-forest); color: var(--sns-white); }
 
 /* ============================================================
+   ANNOUNCEMENT BAR
+   ============================================================ */
+.announce-bar {
+  background: var(--sns-forest);
+  color: var(--sns-white);
+  text-align: center;
+  padding: var(--sp-2) var(--sp-6);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-4);
+  position: relative;
+}
+.announce-bar-prev,
+.announce-bar-next {
+  background: none; border: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 14px; cursor: pointer;
+  padding: 0 var(--sp-2);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.announce-bar-prev:hover,
+.announce-bar-next:hover { color: white; }
+.announce-bar-msg { flex: 1; text-align: center; }
+.announce-bar-msg a { color: white; text-decoration: underline; text-underline-offset: 2px; }
+.announce-bar-close {
+  position: absolute; right: var(--sp-4);
+  background: none; border: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 14px; cursor: pointer;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.announce-bar-close:hover { color: white; }
+.announce-bar-dots {
+  display: flex; gap: 5px;
+  position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+}
+.announce-bar-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+}
+.announce-bar-dot.active { background: white; }
+
+/* ============================================================
+   SITE FOOTER
+   ============================================================ */
+.site-footer {
+  background: var(--sns-ink);
+  color: var(--sns-white);
+  padding: var(--sp-12) var(--sp-12) var(--sp-8);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.site-footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--sp-10);
+  padding-bottom: var(--sp-10);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: var(--sp-8);
+}
+.footer-brand-name {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 300;
+  letter-spacing: var(--tracking-snug);
+  margin-bottom: var(--sp-3);
+}
+.footer-brand-name em { color: var(--sns-stone-400); font-style: italic; }
+.footer-brand-desc {
+  font-size: var(--text-xs);
+  color: var(--sns-stone-500);
+  line-height: var(--leading-loose);
+  margin-bottom: var(--sp-5);
+  max-width: 240px;
+}
+.footer-email-form {
+  display: flex;
+  gap: var(--sp-2);
+}
+.footer-email-input {
+  flex: 1;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-2) var(--sp-3);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--sns-white);
+  outline: none;
+}
+.footer-email-input::placeholder { color: rgba(255,255,255,0.3); }
+.footer-email-input:focus { border-color: rgba(255,255,255,0.3); }
+.footer-email-btn {
+  background: var(--sns-forest);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--sp-2) var(--sp-4);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.footer-email-btn:hover { background: var(--sns-forest-mid); }
+.footer-col-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--sns-stone-500);
+  margin-bottom: var(--sp-4);
+}
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.footer-links a {
+  font-size: var(--text-xs);
+  color: var(--sns-stone-400);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+  line-height: 1;
+}
+.footer-links a:hover { color: var(--sns-white); }
+.site-footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+}
+.footer-copyright {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--sns-stone-500);
+  letter-spacing: var(--tracking-wide);
+}
+.footer-payment-icons {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+.payment-icon {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: var(--radius-xs);
+  padding: 3px 7px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--sns-stone-400);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.footer-legal-links {
+  display: flex;
+  gap: var(--sp-4);
+}
+.footer-legal-links a {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--sns-stone-500);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.footer-legal-links a:hover { color: var(--sns-white); }
+
+/* ============================================================
+   EMAIL CAPTURE POPUP
+   ============================================================ */
+.popup-demo {
+  position: relative;
+  background: var(--sns-cream-mid);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  height: 500px;
+  border: var(--border-light);
+}
+.popup-bg-blur {
+  position: absolute;
+  inset: 0;
+  background: rgba(28,26,23,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+}
+.popup-card {
+  background: var(--sns-white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  width: 420px;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+}
+.popup-image {
+  height: 180px;
+  background: var(--sns-forest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.popup-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 70%, rgba(45,74,62,0.8), transparent 60%),
+              radial-gradient(circle at 80% 20%, rgba(184,150,62,0.15), transparent 50%);
+}
+.popup-image-text {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255,255,255,0.15);
+  letter-spacing: -2px;
+  z-index: 1;
+}
+.popup-badge {
+  position: absolute;
+  top: var(--sp-4); left: var(--sp-4);
+  background: var(--sns-gold);
+  color: white;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: var(--radius-full);
+  z-index: 2;
+}
+.popup-close {
+  position: absolute;
+  top: var(--sp-3); right: var(--sp-3);
+  width: 28px; height: 28px;
+  background: rgba(255,255,255,0.15);
+  border: none; border-radius: 50%;
+  color: white; font-size: 14px;
+  cursor: pointer; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.popup-close:hover { background: rgba(255,255,255,0.25); }
+.popup-body {
+  padding: var(--sp-6) var(--sp-8) var(--sp-8);
+  text-align: center;
+}
+.popup-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--sns-forest);
+  margin-bottom: var(--sp-2);
+}
+.popup-headline {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 300;
+  color: var(--sns-ink);
+  letter-spacing: var(--tracking-snug);
+  line-height: var(--leading-snug);
+  margin-bottom: var(--sp-2);
+}
+.popup-subtext {
+  font-size: var(--text-xs);
+  color: var(--sns-stone-500);
+  line-height: var(--leading-loose);
+  margin-bottom: var(--sp-5);
+}
+.popup-form {
+  display: flex;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-3);
+}
+.popup-input {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--sns-ink);
+  background: var(--sns-white);
+  border: var(--border-mid);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-3) var(--sp-4);
+  outline: none;
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+.popup-input:focus { border-color: var(--sns-forest); box-shadow: 0 0 0 3px rgba(45,74,62,0.10); }
+.popup-input::placeholder { color: var(--sns-stone-300); }
+.popup-dismiss {
+  font-size: 11px;
+  color: var(--sns-stone-400);
+  background: none; border: none;
+  cursor: pointer; padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.popup-dismiss:hover { color: var(--sns-ink); }
+.popup-privacy {
+  font-size: 10px;
+  color: var(--sns-stone-300);
+  margin-top: var(--sp-2);
+  font-family: var(--font-mono);
+}
+
+/* ============================================================
+   HOMEPAGE HERO
+   ============================================================ */
+.homepage-hero {
+  background: var(--sns-ink);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+}
+.homepage-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 50%, rgba(45,74,62,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(184,150,62,0.08) 0%, transparent 50%);
+}
+.homepage-hero-content {
+  position: relative;
+  z-index: 1;
+  padding: var(--sp-16) var(--sp-12);
+  max-width: 580px;
+}
+.homepage-hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--sns-gold);
+  margin-bottom: var(--sp-4);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.homepage-hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--sns-gold);
+}
+.homepage-hero-headline {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  font-weight: 300;
+  color: var(--sns-white);
+  letter-spacing: var(--tracking-tight);
+  line-height: 0.95;
+  margin-bottom: var(--sp-6);
+}
+.homepage-hero-headline em {
+  font-style: italic;
+  color: var(--sns-stone-300);
+}
+.homepage-hero-sub {
+  font-size: var(--text-base);
+  color: var(--sns-stone-400);
+  line-height: var(--leading-loose);
+  margin-bottom: var(--sp-8);
+  max-width: 380px;
+}
+.homepage-hero-actions {
+  display: flex;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+.homepage-hero-cta {
+  background: var(--sns-white);
+  color: var(--sns-ink);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--sp-4) var(--sp-8);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--dur-base) var(--ease-out);
+}
+.homepage-hero-cta:hover { background: var(--sns-cream); transform: translateY(-1px); }
+.homepage-hero-cta-sec {
+  background: transparent;
+  color: var(--sns-stone-300);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-4) var(--sp-8);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--dur-base) var(--ease-out);
+}
+.homepage-hero-cta-sec:hover { border-color: rgba(255,255,255,0.5); color: var(--sns-white); }
+.homepage-hero-img-area {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.homepage-hero-img-placeholder {
+  font-family: var(--font-display);
+  font-size: 200px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255,255,255,0.04);
+  letter-spacing: -8px;
+  user-select: none;
+}
+.homepage-hero-trust {
+  display: flex;
+  gap: var(--sp-6);
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-6);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.homepage-hero-trust-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--text-xs);
+  color: var(--sns-stone-500);
+}
+.homepage-hero-trust-icon { font-size: 14px; }
+
+/* ============================================================
+   COLLECTION / CATEGORY PAGE
+   ============================================================ */
+.collection-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-4) 0;
+  border-bottom: var(--border-hairline);
+  margin-bottom: var(--sp-6);
+}
+.collection-count {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--sns-stone-400);
+}
+.collection-sort {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.collection-sort-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--sns-stone-400);
+}
+.collection-active-filters {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-5);
+}
+.active-filter-pill {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--sns-ink);
+  background: var(--sns-stone-100);
+  border: var(--border-light);
+  border-radius: var(--radius-full);
+  padding: 3px 10px 3px 8px;
+}
+.active-filter-remove {
+  background: none; border: none;
+  color: var(--sns-stone-400);
+  font-size: 12px; cursor: pointer;
+  padding: 0; line-height: 1;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.active-filter-remove:hover { color: var(--sns-red); }
+
+/* ============================================================
+   SEARCH ZERO-RESULTS STATE
+   ============================================================ */
+.zero-results {
+  text-align: center;
+  padding: var(--sp-20) var(--sp-8);
+  border: var(--border-light);
+  border-radius: var(--radius-lg);
+  background: var(--sns-white);
+}
+.zero-results-icon {
+  font-size: 48px;
+  margin-bottom: var(--sp-4);
+  opacity: 0.3;
+}
+.zero-results-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 300;
+  color: var(--sns-ink);
+  letter-spacing: var(--tracking-snug);
+  margin-bottom: var(--sp-2);
+}
+.zero-results-sub {
+  font-size: var(--text-sm);
+  color: var(--sns-stone-500);
+  margin-bottom: var(--sp-6);
+  line-height: var(--leading-loose);
+}
+.zero-results-query {
+  font-family: var(--font-mono);
+  background: var(--sns-stone-100);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  color: var(--sns-ink-muted);
+}
+.zero-results-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  justify-content: center;
+  margin-bottom: var(--sp-6);
+}
+
+/* ============================================================
+   PDP TAB CONTENT PANELS
+   ============================================================ */
+.pdp-tab-panel {
+  padding: var(--sp-5) 0;
+  font-size: var(--text-sm);
+  color: var(--sns-stone-500);
+  line-height: var(--leading-loose);
+}
+.pdp-ingredient-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+}
+.pdp-ingredient {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--text-xs);
+  color: var(--sns-ink-muted);
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--sns-cream-mid);
+  border-radius: var(--radius-sm);
+}
+.pdp-ingredient-key {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  background: var(--sns-forest-lite);
+  color: var(--sns-forest);
+  padding: 1px 5px;
+  border-radius: var(--radius-xs);
+  flex-shrink: 0;
+}
+.pdp-how-step {
+  display: flex;
+  gap: var(--sp-4);
+  padding: var(--sp-4) 0;
+  border-bottom: var(--border-hairline);
+  align-items: flex-start;
+}
+.pdp-how-step:last-child { border-bottom: none; }
+.pdp-how-num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--sns-stone-200);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--sns-stone-400);
+  flex-shrink: 0;
+}
+.pdp-how-text { font-size: var(--text-sm); color: var(--sns-stone-500); line-height: var(--leading-loose); }
+.pdp-how-tip  { font-size: 11px; color: var(--sns-forest); margin-top: 2px; font-family: var(--font-mono); }
+.pdp-warning-item {
+  display: flex;
+  gap: var(--sp-3);
+  padding: var(--sp-3) 0;
+  border-bottom: var(--border-hairline);
+  align-items: flex-start;
+  font-size: var(--text-xs);
+  color: var(--sns-stone-500);
+  line-height: var(--leading-loose);
+}
+.pdp-warning-item:last-child { border-bottom: none; }
+.pdp-warning-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.pdp-faq-item {
+  border-bottom: var(--border-hairline);
+}
+.pdp-faq-item:last-child { border-bottom: none; }
+.pdp-faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--sp-4) 0;
+  cursor: pointer;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--sns-ink);
+}
+.pdp-faq-chevron {
+  color: var(--sns-stone-400);
+  font-size: 12px;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.pdp-faq-q.open .pdp-faq-chevron { transform: rotate(180deg); }
+.pdp-faq-a {
+  font-size: var(--text-sm);
+  color: var(--sns-stone-500);
+  line-height: var(--leading-loose);
+  padding-bottom: var(--sp-4);
+}
+
+/* ============================================================
+   ACCOUNT / LOGIN PAGE
+   ============================================================ */
+.account-tabs {
+  display: flex;
+  border-bottom: var(--border-light);
+  margin-bottom: var(--sp-8);
+}
+.account-tab {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--sns-stone-400);
+  padding: var(--sp-3) var(--sp-5);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  background: none;
+  border-top: none; border-left: none; border-right: none;
+  transition: all var(--dur-fast) var(--ease-out);
+}
+.account-tab:hover { color: var(--sns-ink); }
+.account-tab.active { color: var(--sns-forest); border-bottom-color: var(--sns-forest); }
+.login-card {
+  background: var(--sns-white);
+  border: var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-10) var(--sp-10);
+  max-width: 440px;
+  box-shadow: var(--shadow-sm);
+}
+.login-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 300;
+  color: var(--sns-ink);
+  letter-spacing: var(--tracking-snug);
+  margin-bottom: var(--sp-2);
+}
+.login-sub {
+  font-size: var(--text-sm);
+  color: var(--sns-stone-400);
+  margin-bottom: var(--sp-8);
+  line-height: var(--leading-loose);
+}
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  margin: var(--sp-6) 0;
+  color: var(--sns-stone-300);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--sns-stone-100);
+}
+.login-shop-pay {
+  width: 100%;
+  background: #5A31F4;
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--sp-3) var(--sp-6);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  transition: filter var(--dur-fast) var(--ease-out);
+}
+.login-shop-pay:hover { filter: brightness(1.1); }
+.login-forgot {
+  font-size: 11px;
+  color: var(--sns-forest);
+  background: none; border: none;
+  cursor: pointer; padding: 0;
+  text-align: right;
+  display: block;
+  margin-top: var(--sp-1);
+  font-family: var(--font-mono);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+/* ============================================================
    UTILITY
    ============================================================ */
 .mt-4  { margin-top: var(--sp-4); }
@@ -2546,6 +3286,16 @@ body {
     <a href="#mobilefilter"  class="ds-nav-link">Mobile Filter Sheet</a>
     <a href="#mobilepdp"     class="ds-nav-link">Mobile PDP</a>
     <a href="#crosssell"     class="ds-nav-link">Cart Cross-sell</a>
+
+    <div class="ds-nav-section-label">Full Store</div>
+    <a href="#announcebar"   class="ds-nav-link">Announcement Bar</a>
+    <a href="#homepageherо"  class="ds-nav-link">Homepage Hero</a>
+    <a href="#collectionpg"  class="ds-nav-link">Collection Page</a>
+    <a href="#zeroresults"   class="ds-nav-link">Search Zero Results</a>
+    <a href="#pdptabs"       class="ds-nav-link">PDP Tab Content</a>
+    <a href="#emailpopup"    class="ds-nav-link">Email Popup</a>
+    <a href="#accountpage"   class="ds-nav-link">Account & Login</a>
+    <a href="#sitefooter"    class="ds-nav-link">Site Footer</a>
   </nav>
 
   <!-- ===================== MAIN ===================== -->
@@ -4121,6 +4871,498 @@ body {
                 <div class="notice-title">Shipping bar + cross-sell = double AOV driver</div>
                 <div class="notice-text">The $100 free shipping bar creates urgency to add more. The cross-sell block provides the specific item to add. Together these two elements in the cart drawer are the highest-ROI AOV optimisation available without a paid upsell app.</div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== 21. ANNOUNCEMENT BAR ===== -->
+    <section class="ds-section" id="announcebar">
+      <div class="ds-section-header">
+        <div class="ds-section-num">21</div>
+        <h2 class="ds-section-title">Announcement Bar</h2>
+        <p class="ds-section-desc">Top-of-site promo strip. Sits above the navigation header on every page. Rotates between 3 messages with prev/next arrows. Dismissible via close button — preference stored in localStorage for 24 hours. Forest green background is the default; swap to gold for sale events.</p>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Default — Forest Green</div>
+        <div class="announce-bar">
+          <button class="announce-bar-prev">‹</button>
+          <div class="announce-bar-msg">Free standard shipping on orders over $100 — <a href="#">Shop Now</a></div>
+          <button class="announce-bar-next">›</button>
+          <button class="announce-bar-close">✕</button>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Sale Event — Gold</div>
+        <div class="announce-bar" style="background:var(--sns-gold)">
+          <button class="announce-bar-prev" style="color:rgba(255,255,255,0.6)">‹</button>
+          <div class="announce-bar-msg">Use code <strong>FIRST10</strong> for 10% off your first order · Ends Sunday</div>
+          <button class="announce-bar-next" style="color:rgba(255,255,255,0.6)">›</button>
+          <button class="announce-bar-close" style="color:rgba(255,255,255,0.6)">✕</button>
+        </div>
+      </div>
+
+      <div class="ds-sub mt-6">
+        <div class="ds-sub-title">3-Message Rotation</div>
+        <table class="token-table">
+          <thead><tr><th>#</th><th>Message</th><th>CTA</th></tr></thead>
+          <tbody>
+            <tr><td><span class="ds-token">1</span></td><td>Free standard shipping on orders over $100</td><td>Shop Now →</td></tr>
+            <tr><td><span class="ds-token">2</span></td><td>Trusted by 10,000+ tattoo artists worldwide</td><td>Read Reviews →</td></tr>
+            <tr><td><span class="ds-token">3</span></td><td>New arrivals: Hush Numbing Spray now in stock</td><td>Shop New →</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== 22. HOMEPAGE HERO ===== -->
+    <section class="ds-section" id="homepageherо">
+      <div class="ds-section-header">
+        <div class="ds-section-num">22</div>
+        <h2 class="ds-section-title">Homepage Hero</h2>
+        <p class="ds-section-desc">Full-width dark banner, ink background. Cormorant Garamond display headline at 80px. Two CTAs: primary (white button) and secondary (ghost). Trust signals below the fold line. Product image placeholder on right — supplier hero shot at 1:1 ratio, white-BG processed through the standardisation pipeline.</p>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Hero — Desktop</div>
+        <div class="homepage-hero">
+          <div class="homepage-hero-content">
+            <div class="homepage-hero-eyebrow">Premium Tattoo Supplies</div>
+            <h1 class="homepage-hero-headline">Ink with<br><em>Confidence.</em><br>Feel Less.</h1>
+            <p class="homepage-hero-sub">Professional-grade numbing creams, aftercare, and tattoo supplies from all major brands — delivered fast to your studio or door.</p>
+            <div class="homepage-hero-actions">
+              <button class="homepage-hero-cta">Shop All Products</button>
+              <button class="homepage-hero-cta-sec">Browse by Brand</button>
+            </div>
+            <div class="homepage-hero-trust">
+              <div class="homepage-hero-trust-item"><span class="homepage-hero-trust-icon">⭐</span> 4.9 avg rating</div>
+              <div class="homepage-hero-trust-item"><span class="homepage-hero-trust-icon">📦</span> Ships same day</div>
+              <div class="homepage-hero-trust-item"><span class="homepage-hero-trust-icon">↩</span> 30-day returns</div>
+              <div class="homepage-hero-trust-item"><span class="homepage-hero-trust-icon">🔒</span> Secure checkout</div>
+            </div>
+          </div>
+          <div class="homepage-hero-img-area">
+            <div class="homepage-hero-img-placeholder">T</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub mt-8">
+        <div class="ds-sub-title">Responsive Behaviour</div>
+        <table class="token-table">
+          <thead><tr><th>Breakpoint</th><th>Layout change</th></tr></thead>
+          <tbody>
+            <tr><td>Desktop (&gt;1024px)</td><td>2-col: content left, product image right (45% width)</td></tr>
+            <tr><td>Tablet (768–1024px)</td><td>Product image shrinks to 35%, headline to 56px</td></tr>
+            <tr><td>Mobile (&lt;768px)</td><td>Single column, product image hidden, headline 40px, CTAs full-width stacked</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== 23. COLLECTION PAGE ===== -->
+    <section class="ds-section" id="collectionpg">
+      <div class="ds-section-header">
+        <div class="ds-section-num">23</div>
+        <h2 class="ds-section-title">Collection / Category Page</h2>
+        <p class="ds-section-desc">The product grid page. Toolbar with count, sort dropdown, and active filter pills. 4-col grid desktop, 2-col mobile. Sidebar filter panel (desktop) collapses to bottom sheet on mobile. Active filter pills shown above the grid for quick removal.</p>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Toolbar + Active Filter Pills</div>
+        <div style="background:var(--sns-white);border:var(--border-light);border-radius:var(--radius-lg);padding:var(--sp-6) var(--sp-6) var(--sp-5)">
+          <div class="collection-toolbar">
+            <div class="collection-count">48 products</div>
+            <div class="collection-sort">
+              <span class="collection-sort-label">Sort by</span>
+              <select class="form-select" style="width:auto;padding-right:var(--sp-8)">
+                <option>Best Selling</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Newest</option>
+                <option>Highest Rated</option>
+              </select>
+            </div>
+          </div>
+          <div class="collection-active-filters">
+            <div class="active-filter-pill"><span>Category: Before</span><button class="active-filter-remove">✕</button></div>
+            <div class="active-filter-pill"><span>Brand: TKTX</span><button class="active-filter-remove">✕</button></div>
+            <div class="active-filter-pill"><span>Concentration: 5%</span><button class="active-filter-remove">✕</button></div>
+            <button class="btn btn-ghost btn-sm" style="font-size:10px;padding:3px 10px">Clear all</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Product Grid (4-col Desktop)</div>
+        <div class="ds-grid-4 gap-4">
+          <div class="product-card">
+            <div class="product-image"><div class="product-image-placeholder">T</div><div class="product-badge-tray"><span class="badge badge-forest badge-dot">In Stock</span></div><button class="product-wishlist">♡</button></div>
+            <div class="product-info"><div class="product-brand">TKTX</div><div class="product-name">40% Cream</div><div class="product-variant">30g</div><div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(248)</span></div></div>
+            <div class="product-footer"><span class="product-price">$24.99</span><button class="product-atc">Add</button></div>
+          </div>
+          <div class="product-card">
+            <div class="product-image" style="background:var(--sns-forest-lite)"><div class="product-image-placeholder" style="color:var(--sns-forest);opacity:0.3">Z</div><div class="product-badge-tray"><span class="badge badge-gold">Sale</span></div><button class="product-wishlist">♡</button></div>
+            <div class="product-info"><div class="product-brand">Zensa</div><div class="product-name">Topical Gel</div><div class="product-variant">30g</div><div class="product-rating"><span class="stars">★★★★☆</span><span class="rating-count">(94)</span></div></div>
+            <div class="product-footer"><span class="product-price">$29.99</span><button class="product-atc">Add</button></div>
+          </div>
+          <div class="product-card">
+            <div class="product-image" style="background:var(--sns-gold-lite)"><div class="product-image-placeholder" style="color:var(--sns-gold);opacity:0.3">H</div><div class="product-badge-tray"><span class="badge badge-forest badge-dot">In Stock</span></div><button class="product-wishlist">♡</button></div>
+            <div class="product-info"><div class="product-brand">Hush</div><div class="product-name">Numbing Spray</div><div class="product-variant">120ml</div><div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(167)</span></div></div>
+            <div class="product-footer"><span class="product-price">$19.99</span><button class="product-atc">Add</button></div>
+          </div>
+          <div class="product-card oos">
+            <div class="product-image" style="background:var(--sns-stone-100)"><div class="product-image-placeholder" style="color:var(--sns-stone-300)">D</div><div class="product-badge-tray"><span class="badge badge-red badge-dot">Out of Stock</span></div><button class="product-wishlist">🔔</button></div>
+            <div class="product-info"><div class="product-brand">Dr. Numb</div><div class="product-name">5% Lidocaine</div><div class="product-variant">30g</div><div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(312)</span></div></div>
+            <div class="product-footer"><span class="product-price">$32.99</span><button class="product-atc" disabled>Notify Me</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 24. SEARCH ZERO RESULTS ===== -->
+    <section class="ds-section" id="zeroresults">
+      <div class="ds-section-header">
+        <div class="ds-section-num">24</div>
+        <h2 class="ds-section-title">Search — Zero Results</h2>
+        <p class="ds-section-desc">Shown when a search returns no matching products. Never a dead end — always offers alternative paths: clear search, browse suggestions, or contact us. The "did you mean" synonyms pull from the Shopify Search & Discovery synonym groups.</p>
+      </div>
+
+      <div class="ds-grid-2 gap-4" style="align-items:start">
+        <div class="zero-results">
+          <div class="zero-results-icon">🔍</div>
+          <div class="zero-results-title">No results for <span class="zero-results-query">"numbing patch"</span></div>
+          <div class="zero-results-sub">We couldn't find any products matching that search. Try one of these instead:</div>
+          <div class="zero-results-suggestions">
+            <span class="filter-opt">numbing cream</span>
+            <span class="filter-opt">numbing gel</span>
+            <span class="filter-opt">anaesthetic cream</span>
+            <span class="filter-opt">lidocaine cream</span>
+            <span class="filter-opt">TKTX</span>
+            <span class="filter-opt">Dr. Numb</span>
+          </div>
+          <div style="display:flex;gap:var(--sp-3);justify-content:center;flex-wrap:wrap">
+            <button class="btn btn-primary">Browse All Products</button>
+            <button class="btn btn-ghost">Contact Support</button>
+          </div>
+        </div>
+
+        <div class="ds-flex-col">
+          <div class="ds-sub-title">Zero Results Rules</div>
+          <table class="token-table">
+            <thead><tr><th>Rule</th><th>Detail</th></tr></thead>
+            <tbody>
+              <tr><td>Never show blank page</td><td>Always render the zero-results component</td></tr>
+              <tr><td>Echo the query</td><td>Show what they searched for in quotes</td></tr>
+              <tr><td>Synonym suggestions</td><td>Pull from Search & Discovery synonym groups</td></tr>
+              <tr><td>Fallback CTA</td><td>Browse All is always present</td></tr>
+              <tr><td>Typo tolerance</td><td>Shopify Search & Discovery handles this natively — misspelling "numbing" still returns results</td></tr>
+            </tbody>
+          </table>
+          <div class="notice notice-info" style="margin-top:var(--sp-4)">
+            <span class="notice-icon">ℹ</span>
+            <div class="notice-body">
+              <div class="notice-title">Synonym groups to set up on day one</div>
+              <div class="notice-text">numbing / anaesthetic / anesthetic / lidocaine · cream / gel / lotion / balm · aftercare / healing / recovery / after care · spray / mist</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 25. PDP TAB CONTENT PANELS ===== -->
+    <section class="ds-section" id="pdptabs">
+      <div class="ds-section-header">
+        <div class="ds-section-num">25</div>
+        <h2 class="ds-section-title">PDP Tab Content Panels</h2>
+        <p class="ds-section-desc">All 5 tab content panels fully designed. Description, Ingredients, How to Use, Warnings, and FAQs. On mobile these become accordions — tap to expand, tap again to collapse.</p>
+      </div>
+
+      <div class="ds-grid-2 gap-4">
+        <div>
+          <div class="ds-sub-title">Tab — Ingredients</div>
+          <div class="pdp-tab-panel">
+            <p style="margin-bottom:var(--sp-4)">Active and inactive ingredients in this formulation. Key active highlighted in green.</p>
+            <div class="pdp-ingredient-list">
+              <div class="pdp-ingredient"><span class="pdp-ingredient-key">Active</span>Lidocaine 4%</div>
+              <div class="pdp-ingredient"><span class="pdp-ingredient-key">Active</span>Epinephrine 0.025%</div>
+              <div class="pdp-ingredient">Water (Aqua)</div>
+              <div class="pdp-ingredient">Glycerin</div>
+              <div class="pdp-ingredient">Propylene Glycol</div>
+              <div class="pdp-ingredient">Carbomer</div>
+              <div class="pdp-ingredient">Triethanolamine</div>
+              <div class="pdp-ingredient">Methylparaben</div>
+            </div>
+          </div>
+
+          <div class="ds-sub-title mt-6">Tab — Warnings</div>
+          <div class="pdp-tab-panel">
+            <div class="pdp-warning-item"><span class="pdp-warning-icon">⚠️</span><span>For external use only. Do not apply to broken, irritated, or infected skin. Keep out of reach of children.</span></div>
+            <div class="pdp-warning-item"><span class="pdp-warning-icon">🚫</span><span>Do not use if you have known allergy to lidocaine, amide-type local anaesthetics, or any ingredient listed above.</span></div>
+            <div class="pdp-warning-item"><span class="pdp-warning-icon">🩺</span><span>Consult a doctor before use if pregnant, breastfeeding, or have liver disease. Discontinue use if irritation develops.</span></div>
+            <div class="pdp-warning-item"><span class="pdp-warning-icon">⏱️</span><span>Do not leave on skin for more than 60 minutes. Do not cover large body surface areas simultaneously.</span></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="ds-sub-title">Tab — How to Use</div>
+          <div class="pdp-tab-panel">
+            <div class="pdp-how-step">
+              <div class="pdp-how-num">1</div>
+              <div><div class="pdp-how-text">Clean and dry the area to be tattooed. Remove any lotion, oil, or sweat from the skin surface.</div></div>
+            </div>
+            <div class="pdp-how-step">
+              <div class="pdp-how-num">2</div>
+              <div><div class="pdp-how-text">Apply a thick layer (2–3mm) of cream to the area and spread evenly with a gloved finger.</div><div class="pdp-how-tip">Tip: Apply generously — too little reduces effectiveness</div></div>
+            </div>
+            <div class="pdp-how-step">
+              <div class="pdp-how-num">3</div>
+              <div><div class="pdp-how-text">Cover with cling wrap and leave for 45–60 minutes before the session begins.</div><div class="pdp-how-tip">Tip: 60 minutes gives maximum depth of numbness</div></div>
+            </div>
+            <div class="pdp-how-step">
+              <div class="pdp-how-num">4</div>
+              <div><div class="pdp-how-text">Remove wrap and wipe off excess cream with a clean cloth or gauze. Do not rinse with water.</div></div>
+            </div>
+          </div>
+
+          <div class="ds-sub-title mt-6">Tab — FAQs</div>
+          <div class="pdp-tab-panel" style="padding-top:0">
+            <div class="pdp-faq-item">
+              <div class="pdp-faq-q open">How long does the numbing last? <span class="pdp-faq-chevron">▾</span></div>
+              <div class="pdp-faq-a">TKTX 40% typically lasts 3–5 hours depending on skin type, body location, and the depth of tattooing. Bony areas and high-movement zones may see shorter duration.</div>
+            </div>
+            <div class="pdp-faq-item">
+              <div class="pdp-faq-q">Is this safe for all skin types? <span class="pdp-faq-chevron">▾</span></div>
+            </div>
+            <div class="pdp-faq-item">
+              <div class="pdp-faq-q">Can I use this for piercings or laser treatments? <span class="pdp-faq-chevron">▾</span></div>
+            </div>
+            <div class="pdp-faq-item">
+              <div class="pdp-faq-q">Will it affect the ink or tattoo quality? <span class="pdp-faq-chevron">▾</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 26. EMAIL CAPTURE POPUP ===== -->
+    <section class="ds-section" id="emailpopup">
+      <div class="ds-section-header">
+        <div class="ds-section-num">26</div>
+        <h2 class="ds-section-title">Email Capture Popup</h2>
+        <p class="ds-section-desc">Klaviyo-powered popup. Triggers on exit-intent (desktop) or after 30 seconds on-page (mobile). 10% first-order discount incentive. Dismissible — preference stored for 7 days. Never shown again after sign-up.</p>
+      </div>
+
+      <div class="ds-grid-2 gap-4" style="align-items:start">
+        <div class="popup-demo">
+          <div class="popup-bg-blur">
+            <div class="popup-card">
+              <div class="popup-image">
+                <div class="popup-badge">Exclusive Offer</div>
+                <button class="popup-close">✕</button>
+                <div class="popup-image-text">SNS</div>
+              </div>
+              <div class="popup-body">
+                <div class="popup-eyebrow">Welcome to SNS</div>
+                <div class="popup-headline">Get 10% off<br>your first order</div>
+                <div class="popup-subtext">Join 10,000+ tattoo artists and enthusiasts. Sign up for exclusive deals, new arrivals, and expert aftercare tips.</div>
+                <div class="popup-form">
+                  <input class="popup-input" type="email" placeholder="your@email.com">
+                  <button class="btn btn-primary">Claim</button>
+                </div>
+                <button class="popup-dismiss">No thanks, I'll pay full price</button>
+                <div class="popup-privacy">🔒 No spam. Unsubscribe any time.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-flex-col">
+          <div class="ds-sub-title">Popup Trigger Rules</div>
+          <table class="token-table">
+            <thead><tr><th>Device</th><th>Trigger</th><th>Delay</th></tr></thead>
+            <tbody>
+              <tr><td>Desktop</td><td>Exit-intent (mouse leaves viewport upward)</td><td>Minimum 15s on page</td></tr>
+              <tr><td>Mobile</td><td>Time on page</td><td>30 seconds</td></tr>
+              <tr><td>Both</td><td>Scroll depth fallback</td><td>After 60% page scroll</td></tr>
+            </tbody>
+          </table>
+
+          <div class="ds-sub-title mt-6">Suppression Rules</div>
+          <table class="token-table">
+            <thead><tr><th>Condition</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>Already subscribed (Klaviyo)</td><td>Never show</td></tr>
+              <tr><td>Dismissed within 7 days</td><td>Suppress (cookie)</td></tr>
+              <tr><td>Arrived via email campaign</td><td>Never show — they're already subscribed</td></tr>
+              <tr><td>Checkout page</td><td>Never show — don't interrupt purchase flow</td></tr>
+              <tr><td>After successful signup</td><td>Never show again (permanent cookie)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 27. ACCOUNT & LOGIN PAGE ===== -->
+    <section class="ds-section" id="accountpage">
+      <div class="ds-section-header">
+        <div class="ds-section-num">27</div>
+        <h2 class="ds-section-title">Account & Login Page</h2>
+        <p class="ds-section-desc">Shopify-native account system. Login and Register tabs. Shop Pay SSO as the primary option — reduces friction significantly on mobile. Standard email/password form as fallback. Logged-in state shows order history, saved addresses, and reorder shortcuts.</p>
+      </div>
+
+      <div class="ds-grid-2 gap-4" style="align-items:start">
+        <div>
+          <div class="ds-sub-title">Login / Register</div>
+          <div class="account-tabs">
+            <button class="account-tab active">Log In</button>
+            <button class="account-tab">Create Account</button>
+          </div>
+          <div class="login-card" style="max-width:100%">
+            <div class="login-title">Welcome back</div>
+            <div class="login-sub">Log in to view your orders, track shipments, and reorder your favourites.</div>
+            <button class="login-shop-pay">
+              <span style="font-weight:700;font-size:15px">Shop</span><span style="font-weight:300;font-size:15px">Pay</span>
+              <span style="font-size:12px;opacity:0.8">— Sign in instantly</span>
+            </button>
+            <div class="login-divider">or continue with email</div>
+            <div class="ds-flex-col" style="gap:var(--sp-4)">
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input class="form-input" type="email" placeholder="you@studio.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Password</label>
+                <input class="form-input" type="password" placeholder="••••••••">
+                <button class="login-forgot">Forgot password?</button>
+              </div>
+              <button class="btn btn-primary" style="width:100%">Log In</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-flex-col">
+          <div class="ds-sub-title">Logged-in Account Dashboard</div>
+          <div style="background:var(--sns-white);border:var(--border-light);border-radius:var(--radius-lg);overflow:hidden">
+            <div style="padding:var(--sp-5) var(--sp-6);border-bottom:var(--border-hairline);display:flex;align-items:center;gap:var(--sp-4)">
+              <div style="width:44px;height:44px;background:var(--sns-forest-lite);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:var(--text-xl);color:var(--sns-forest)">S</div>
+              <div>
+                <div style="font-weight:500;color:var(--sns-ink)">Sarah Mitchell</div>
+                <div style="font-family:var(--font-mono);font-size:10px;color:var(--sns-stone-400)">sarah@inkstudio.com</div>
+              </div>
+              <button class="btn btn-ghost btn-sm" style="margin-left:auto">Log out</button>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:var(--border-hairline)">
+              <div style="padding:var(--sp-5);border-right:var(--border-hairline);text-align:center">
+                <div style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:300;color:var(--sns-ink)">12</div>
+                <div style="font-family:var(--font-mono);font-size:10px;color:var(--sns-stone-400);letter-spacing:var(--tracking-wider);text-transform:uppercase">Orders</div>
+              </div>
+              <div style="padding:var(--sp-5);text-align:center">
+                <div style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:300;color:var(--sns-ink)">$284</div>
+                <div style="font-family:var(--font-mono);font-size:10px;color:var(--sns-stone-400);letter-spacing:var(--tracking-wider);text-transform:uppercase">Total spent</div>
+              </div>
+            </div>
+            <div style="padding:var(--sp-4) var(--sp-6)">
+              <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--sns-stone-400);margin-bottom:var(--sp-3)">Recent Orders</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:var(--sp-3) 0;border-bottom:var(--border-hairline)">
+                <div>
+                  <div style="font-size:var(--text-sm);font-weight:500;color:var(--sns-ink)">#SNS-4831</div>
+                  <div style="font-family:var(--font-mono);font-size:10px;color:var(--sns-stone-400)">Jun 04 · $82.98</div>
+                </div>
+                <div style="display:flex;gap:var(--sp-2);align-items:center">
+                  <span class="badge badge-forest badge-dot">Fulfilled</span>
+                  <button class="btn btn-ghost btn-sm" style="font-size:10px;padding:3px 10px">Reorder</button>
+                </div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:var(--sp-3) 0">
+                <div>
+                  <div style="font-size:var(--text-sm);font-weight:500;color:var(--sns-ink)">#SNS-4819</div>
+                  <div style="font-family:var(--font-mono);font-size:10px;color:var(--sns-stone-400)">May 28 · $49.98</div>
+                </div>
+                <div style="display:flex;gap:var(--sp-2);align-items:center">
+                  <span class="badge badge-forest badge-dot">Fulfilled</span>
+                  <button class="btn btn-ghost btn-sm" style="font-size:10px;padding:3px 10px">Reorder</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 28. SITE FOOTER ===== -->
+    <section class="ds-section" id="sitefooter">
+      <div class="ds-section-header">
+        <div class="ds-section-num">28</div>
+        <h2 class="ds-section-title">Site Footer</h2>
+        <p class="ds-section-desc">Ink-black background. 4-column layout: brand + newsletter, Shop, Help, Company. Payment icons row at the bottom. Legal links right-aligned. On mobile: single column stack, brand col first, newsletter form full-width.</p>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Full Footer</div>
+        <div class="site-footer">
+          <div class="site-footer-top">
+            <div>
+              <div class="footer-brand-name">Signature <em>Numbing</em> Supplies</div>
+              <div class="footer-brand-desc">Professional-grade tattoo numbing creams, aftercare, and supplies from all major brands. Trusted by 10,000+ artists worldwide.</div>
+              <div class="footer-email-form">
+                <input class="footer-email-input" type="email" placeholder="Enter your email">
+                <button class="footer-email-btn">Subscribe</button>
+              </div>
+            </div>
+            <div>
+              <div class="footer-col-title">Shop</div>
+              <ul class="footer-links">
+                <li><a href="#">All Products</a></li>
+                <li><a href="#">Before Session</a></li>
+                <li><a href="#">During Session</a></li>
+                <li><a href="#">After Care</a></li>
+                <li><a href="#">Shop by Brand</a></li>
+                <li><a href="#">Sale</a></li>
+              </ul>
+            </div>
+            <div>
+              <div class="footer-col-title">Help</div>
+              <ul class="footer-links">
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">How to Apply</a></li>
+                <li><a href="#">Shipping Info</a></li>
+                <li><a href="#">Returns & Refunds</a></li>
+                <li><a href="#">Track Order</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div>
+              <div class="footer-col-title">Company</div>
+              <ul class="footer-links">
+                <li><a href="#">About SNS</a></li>
+                <li><a href="#">Servizio Primo</a></li>
+                <li><a href="#">Wholesale</a></li>
+                <li><a href="#">Affiliate Program</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">TikTok</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="site-footer-bottom">
+            <div class="footer-copyright">© 2026 Signature Numbing Supplies · Servizio Primo LLC</div>
+            <div class="footer-payment-icons">
+              <span class="payment-icon">Visa</span>
+              <span class="payment-icon">MC</span>
+              <span class="payment-icon">Amex</span>
+              <span class="payment-icon">Shop Pay</span>
+              <span class="payment-icon">Apple Pay</span>
+              <span class="payment-icon">G Pay</span>
+              <span class="payment-icon">PayPal</span>
+            </div>
+            <div class="footer-legal-links">
+              <a href="#">Privacy</a>
+              <a href="#">Terms</a>
+              <a href="#">Cookies</a>
             </div>
           </div>
         </div>
