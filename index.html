@@ -1684,6 +1684,521 @@ body {
 }
 
 /* ============================================================
+   SECTION 14 — IMAGERY & ART DIRECTION
+   ============================================================ */
+.img-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+}
+.img-spec-card {
+  background: var(--sns-white);
+  border: var(--border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.img-spec-preview {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: -2px;
+  position: relative;
+}
+.img-spec-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--sns-stone-400);
+  padding: var(--sp-3) var(--sp-4) var(--sp-1);
+}
+.img-spec-desc {
+  font-size: var(--text-xs);
+  color: var(--sns-stone-500);
+  line-height: var(--leading-loose);
+  padding: 0 var(--sp-4) var(--sp-4);
+}
+.pipeline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  padding: var(--sp-4) 0;
+  border-bottom: var(--border-hairline);
+}
+.pipeline-step:last-child { border-bottom: none; }
+.pipeline-num {
+  width: 28px; height: 28px;
+  background: var(--sns-forest);
+  color: var(--sns-white);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.pipeline-info {}
+.pipeline-title { font-size: var(--text-sm); font-weight: 500; color: var(--sns-ink); margin-bottom: 2px; }
+.pipeline-desc  { font-size: var(--text-xs); color: var(--sns-stone-400); line-height: var(--leading-loose); }
+.pipeline-tool  { font-family: var(--font-mono); font-size: 10px; color: var(--sns-forest); margin-top: 3px; }
+
+/* ============================================================
+   SECTION 15 — CHECKOUT STEPPER
+   ============================================================ */
+.stepper {
+  display: flex;
+  align-items: center;
+  background: var(--sns-white);
+  border: var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6) var(--sp-8);
+  box-shadow: var(--shadow-sm);
+}
+.stepper-step {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.stepper-step:last-child { flex: 0; }
+.stepper-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  position: relative;
+  z-index: 1;
+}
+.stepper-circle {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  border: 2px solid var(--sns-stone-200);
+  background: var(--sns-white);
+  color: var(--sns-stone-400);
+  transition: all var(--dur-base) var(--ease-out);
+}
+.stepper-circle.done {
+  background: var(--sns-forest);
+  border-color: var(--sns-forest);
+  color: white;
+  font-size: 14px;
+}
+.stepper-circle.active {
+  border-color: var(--sns-forest);
+  color: var(--sns-forest);
+  font-weight: 500;
+  box-shadow: 0 0 0 4px rgba(45,74,62,0.10);
+}
+.stepper-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--sns-stone-400);
+  white-space: nowrap;
+}
+.stepper-label.active { color: var(--sns-forest); font-weight: 500; }
+.stepper-label.done   { color: var(--sns-ink-muted); }
+.stepper-line {
+  flex: 1;
+  height: 2px;
+  background: var(--sns-stone-200);
+  margin: 0 var(--sp-2);
+  position: relative;
+  top: -10px;
+}
+.stepper-line.done { background: var(--sns-forest); }
+
+/* ============================================================
+   SECTION 16 — DATA TABLE & STAT CARDS
+   ============================================================ */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-8);
+}
+.stat-card {
+  background: var(--sns-white);
+  border: var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5) var(--sp-6);
+  box-shadow: var(--shadow-xs);
+}
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--sns-stone-400);
+  margin-bottom: var(--sp-2);
+}
+.stat-value {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 300;
+  color: var(--sns-ink);
+  letter-spacing: var(--tracking-snug);
+  line-height: 1;
+  margin-bottom: var(--sp-2);
+}
+.stat-delta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.stat-delta.up   { color: var(--sns-forest); }
+.stat-delta.down { color: var(--sns-red); }
+.stat-delta.neutral { color: var(--sns-stone-400); }
+.stat-spark {
+  height: 32px;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  margin-top: var(--sp-3);
+}
+.stat-spark-bar {
+  flex: 1;
+  background: var(--sns-stone-100);
+  border-radius: 2px 2px 0 0;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.stat-spark-bar.active { background: var(--sns-forest); }
+.stat-spark-bar:hover  { background: var(--sns-forest-mid); }
+
+.data-table-wrap {
+  background: var(--sns-white);
+  border: var(--border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.data-table thead tr {
+  background: var(--sns-cream-mid);
+  border-bottom: var(--border-mid);
+}
+.data-table th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--sns-stone-400);
+  text-align: left;
+  padding: var(--sp-3) var(--sp-5);
+  white-space: nowrap;
+}
+.data-table th:last-child { text-align: right; }
+.data-table td {
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: var(--border-hairline);
+  color: var(--sns-ink-muted);
+  vertical-align: middle;
+}
+.data-table td:last-child { text-align: right; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--sns-cream-mid); }
+.data-table .td-primary {
+  font-weight: 500;
+  color: var(--sns-ink);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.data-table .td-mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+.data-table .td-img {
+  width: 36px; height: 36px;
+  background: var(--sns-cream-mid);
+  border-radius: var(--radius-md);
+  border: var(--border-hairline);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--text-lg);
+  color: var(--sns-stone-300);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   SECTION 17 — PRODUCT DETAIL PAGE
+   ============================================================ */
+.pdp-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-10);
+  align-items: start;
+}
+.pdp-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.pdp-hero-img {
+  aspect-ratio: 1;
+  background: var(--sns-cream-mid);
+  border-radius: var(--radius-lg);
+  border: var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 120px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--sns-stone-200);
+  letter-spacing: -4px;
+  position: relative;
+  overflow: hidden;
+}
+.pdp-gallery-nav {
+  position: absolute;
+  bottom: var(--sp-4);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--sp-2);
+}
+.pdp-gallery-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--sns-stone-300);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.pdp-gallery-dot.active { background: var(--sns-ink); }
+.pdp-thumbs {
+  display: flex;
+  gap: var(--sp-2);
+}
+.pdp-thumb {
+  width: 64px; height: 64px;
+  background: var(--sns-cream-mid);
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--text-xl);
+  color: var(--sns-stone-300);
+  transition: border-color var(--dur-fast) var(--ease-out);
+  flex-shrink: 0;
+}
+.pdp-thumb.active { border-color: var(--sns-ink); }
+.pdp-thumb:hover  { border-color: var(--sns-stone-300); }
+
+.pdp-info {}
+.pdp-breadcrumb {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--sns-stone-300);
+  margin-bottom: var(--sp-3);
+  display: flex;
+  gap: var(--sp-2);
+  align-items: center;
+}
+.pdp-breadcrumb span { color: var(--sns-stone-400); }
+.pdp-rating-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
+}
+.pdp-brand-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--sns-stone-400);
+  margin-bottom: var(--sp-2);
+}
+.pdp-name {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 300;
+  color: var(--sns-ink);
+  letter-spacing: var(--tracking-snug);
+  line-height: var(--leading-snug);
+  margin-bottom: var(--sp-3);
+}
+.pdp-desc {
+  font-size: var(--text-sm);
+  color: var(--sns-stone-500);
+  line-height: var(--leading-loose);
+  margin-bottom: var(--sp-6);
+  max-width: 420px;
+}
+.pdp-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-2);
+}
+.pdp-price {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 400;
+  color: var(--sns-ink);
+}
+.pdp-price-was {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--sns-stone-300);
+  text-decoration: line-through;
+}
+.pdp-shipping-note {
+  font-size: var(--text-xs);
+  color: var(--sns-forest);
+  margin-bottom: var(--sp-6);
+}
+.pdp-variants {
+  margin-bottom: var(--sp-5);
+}
+.pdp-variants-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--sns-stone-400);
+  margin-bottom: var(--sp-3);
+}
+.pdp-variant-opts {
+  display: flex;
+  gap: var(--sp-2);
+}
+.pdp-variant-opt {
+  padding: var(--sp-2) var(--sp-4);
+  border: var(--border-mid);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--sns-ink-muted);
+  cursor: pointer;
+  background: var(--sns-white);
+  transition: all var(--dur-fast) var(--ease-out);
+}
+.pdp-variant-opt.active { border-color: var(--sns-ink); color: var(--sns-ink); font-weight: 500; }
+.pdp-variant-opt:hover  { border-color: var(--sns-stone-300); }
+.pdp-actions {
+  display: flex;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-5);
+  align-items: center;
+}
+.pdp-atc {
+  flex: 1;
+  background: var(--sns-forest);
+  color: var(--sns-white);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--sp-4);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--dur-base) var(--ease-out);
+}
+.pdp-atc:hover { background: var(--sns-forest-mid); transform: translateY(-1px); }
+.pdp-trust {
+  display: flex;
+  gap: var(--sp-4);
+  padding: var(--sp-4) 0;
+  border-top: var(--border-hairline);
+  border-bottom: var(--border-hairline);
+  margin-bottom: var(--sp-6);
+}
+.pdp-trust-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: 11px;
+  color: var(--sns-stone-500);
+}
+.pdp-trust-icon { font-size: 14px; }
+
+/* PDP Tabs */
+.pdp-tabs {
+  border-bottom: var(--border-light);
+  display: flex;
+  gap: 0;
+  margin-bottom: var(--sp-5);
+}
+.pdp-tab {
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--sns-stone-400);
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  background: none;
+  border-top: none; border-left: none; border-right: none;
+  transition: all var(--dur-fast) var(--ease-out);
+  white-space: nowrap;
+}
+.pdp-tab:hover { color: var(--sns-ink); }
+.pdp-tab.active { color: var(--sns-forest); border-bottom-color: var(--sns-forest); }
+
+/* Reviews */
+.review-summary {
+  display: flex;
+  gap: var(--sp-8);
+  align-items: center;
+  padding: var(--sp-6) 0;
+  border-bottom: var(--border-hairline);
+  margin-bottom: var(--sp-6);
+}
+.review-big-score {
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 300;
+  color: var(--sns-ink);
+  line-height: 1;
+}
+.review-bars { flex: 1; display: flex; flex-direction: column; gap: var(--sp-2); }
+.review-bar-row { display: flex; align-items: center; gap: var(--sp-2); }
+.review-bar-label { font-family: var(--font-mono); font-size: 10px; color: var(--sns-stone-400); width: 20px; text-align: right; }
+.review-bar-track { flex: 1; height: 6px; background: var(--sns-stone-100); border-radius: var(--radius-full); overflow: hidden; }
+.review-bar-fill  { height: 100%; background: var(--sns-gold); border-radius: var(--radius-full); }
+.review-bar-count { font-family: var(--font-mono); font-size: 10px; color: var(--sns-stone-400); width: 24px; }
+.review-card {
+  padding: var(--sp-5) 0;
+  border-bottom: var(--border-hairline);
+}
+.review-card:last-child { border-bottom: none; }
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--sp-2);
+}
+.review-author { font-size: var(--text-sm); font-weight: 500; color: var(--sns-ink); }
+.review-date   { font-family: var(--font-mono); font-size: 10px; color: var(--sns-stone-300); }
+.review-text   { font-size: var(--text-sm); color: var(--sns-stone-500); line-height: var(--leading-loose); }
+.review-verified { font-family: var(--font-mono); font-size: 10px; color: var(--sns-forest); margin-top: var(--sp-2); }
+
+/* ============================================================
    UTILITY
    ============================================================ */
 .mt-4  { margin-top: var(--sp-4); }
@@ -1730,6 +2245,12 @@ body {
     <a href="#search"     class="ds-nav-link">Search & Filter</a>
     <a href="#mobile"     class="ds-nav-link">Mobile</a>
     <a href="#email"      class="ds-nav-link">Email Templates</a>
+
+    <div class="ds-nav-section-label">Original 10</div>
+    <a href="#imagery"    class="ds-nav-link">Imagery & Art Direction</a>
+    <a href="#stepper"    class="ds-nav-link">Checkout Stepper</a>
+    <a href="#datatable"  class="ds-nav-link">Data Table & Stats</a>
+    <a href="#pdp"        class="ds-nav-link">Product Detail Page</a>
   </nav>
 
   <!-- ===================== MAIN ===================== -->
@@ -2520,6 +3041,465 @@ body {
             <tr><td>Win-back</td><td>Klaviyo</td><td>60 days no purchase</td><td>10% discount offer · One send only</td></tr>
           </tbody>
         </table>
+      </div>
+    </section>
+
+
+    <!-- ===== 14. IMAGERY & ART DIRECTION ===== -->
+    <section class="ds-section" id="imagery">
+      <div class="ds-section-header">
+        <div class="ds-section-num">14</div>
+        <h2 class="ds-section-title">Imagery & Art Direction</h2>
+        <p class="ds-section-desc">Supplier-sourced product images standardised through a 4-step pipeline. Clinical white-background hero shots. Lifestyle shots in tattoo studio context for editorial placements only.</p>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Image Style Variants</div>
+        <div class="img-spec-grid">
+          <div class="img-spec-card">
+            <div class="img-spec-preview" style="background:var(--sns-white);color:var(--sns-stone-200)">T</div>
+            <div class="img-spec-label">Hero — White BG</div>
+            <div class="img-spec-desc">Primary product shot. Pure white (#FFFFFF) background. Used on all collection pages, PDPs, and cart thumbnails. Supplier-provided; processed through pipeline.</div>
+          </div>
+          <div class="img-spec-card">
+            <div class="img-spec-preview" style="background:var(--sns-cream-mid);color:var(--sns-stone-300)">Z</div>
+            <div class="img-spec-label">Secondary — Cream BG</div>
+            <div class="img-spec-desc">Supporting angle or detail shot. Cream (#F2EDE5) background. Used as thumbnail 2–4 in gallery. Consistent light direction — always top-left source.</div>
+          </div>
+          <div class="img-spec-card">
+            <div class="img-spec-preview" style="background:var(--sns-ink);color:rgba(255,255,255,0.1)">✦</div>
+            <div class="img-spec-label">Lifestyle — Studio</div>
+            <div class="img-spec-desc">Editorial only. Tattoo studio environment. Used on homepage hero, collection banners, and email headers. Never on product cards or PDPs.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Supplier Image Standardisation Pipeline</div>
+        <div class="ds-grid-2 gap-4">
+          <div>
+            <div class="pipeline-step">
+              <div class="pipeline-num">1</div>
+              <div class="pipeline-info">
+                <div class="pipeline-title">Background Removal</div>
+                <div class="pipeline-desc">Strip supplier backgrounds to transparent PNG. Reject any image with shadow artefacts or clipping errors — send back to supplier for re-shoot.</div>
+                <div class="pipeline-tool">Tool: remove.bg API · Adobe Firefly (batch)</div>
+              </div>
+            </div>
+            <div class="pipeline-step">
+              <div class="pipeline-num">2</div>
+              <div class="pipeline-info">
+                <div class="pipeline-title">Canvas Standardise</div>
+                <div class="pipeline-desc">1:1 square canvas. Product fills 80% of frame, centred. 10% padding on all sides. Place on #FFFFFF background for hero, #F2EDE5 for secondary.</div>
+                <div class="pipeline-tool">Tool: Photoshop batch action · Figma export</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="pipeline-step">
+              <div class="pipeline-num">3</div>
+              <div class="pipeline-info">
+                <div class="pipeline-title">Colour Grade</div>
+                <div class="pipeline-desc">Normalise white balance to D65 illuminant. Boost contrast +5. Apply subtle warmth curve to align with SNS cream palette. All products on the same LUT.</div>
+                <div class="pipeline-tool">Tool: Lightroom preset "SNS-Product-v1"</div>
+              </div>
+            </div>
+            <div class="pipeline-step">
+              <div class="pipeline-num">4</div>
+              <div class="pipeline-info">
+                <div class="pipeline-title">Export & Upload</div>
+                <div class="pipeline-desc">Export as WebP at 85% quality. Max 800×800px for product cards, 1600×1600px for PDP hero. Upload to Shopify CDN. Alt text: "Brand · Product Name · Variant".</div>
+                <div class="pipeline-tool">Tool: Shopify Files · Shopify Admin API</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Brand Logo Strip Rules</div>
+        <div class="notice notice-info">
+          <span class="notice-icon">ℹ</span>
+          <div class="notice-body">
+            <div class="notice-title">SVG preferred — PNG fallback at 2× resolution</div>
+            <div class="notice-text">Request SVG or transparent-background PNG from each brand. Normalise all logos to 32px height in the brand strip. Monochrome version (--sns-stone-400) for default state, full colour on hover and active. Current brands to request from: TKTX, Zensa, Dr. Numb, Hush, Numb Master, Emla, BLT.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 15. CHECKOUT STEPPER ===== -->
+    <section class="ds-section" id="stepper">
+      <div class="ds-section-header">
+        <div class="ds-section-num">15</div>
+        <h2 class="ds-section-title">Checkout Stepper</h2>
+        <p class="ds-section-desc">4-step flow: Cart → Information → Shipping → Payment. Completed steps show a checkmark. Active step highlighted in forest green with focus ring. Applied to Shopify checkout branding on Standard plan via logo + colour only — full stepper customisation requires Plus.</p>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Step 1 of 4 — Cart Review</div>
+        <div class="stepper">
+          <div class="stepper-step">
+            <div class="stepper-node">
+              <div class="stepper-circle active">1</div>
+              <div class="stepper-label active">Cart</div>
+            </div>
+            <div class="stepper-line"></div>
+          </div>
+          <div class="stepper-step">
+            <div class="stepper-node">
+              <div class="stepper-circle">2</div>
+              <div class="stepper-label">Information</div>
+            </div>
+            <div class="stepper-line"></div>
+          </div>
+          <div class="stepper-step">
+            <div class="stepper-node">
+              <div class="stepper-circle">3</div>
+              <div class="stepper-label">Shipping</div>
+            </div>
+            <div class="stepper-line"></div>
+          </div>
+          <div class="stepper-step">
+            <div class="stepper-node">
+              <div class="stepper-circle">4</div>
+              <div class="stepper-label">Payment</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Step 3 of 4 — Shipping (mid-flow)</div>
+        <div class="stepper">
+          <div class="stepper-step">
+            <div class="stepper-node">
+              <div class="stepper-circle done">✓</div>
+              <div class="stepper-label done">Cart</div>
+            </div>
+            <div class="stepper-line done"></div>
+          </div>
+          <div class="stepper-step">
+            <div class="stepper-node">
+              <div class="stepper-circle done">✓</div>
+              <div class="stepper-label done">Information</div>
+            </div>
+            <div class="stepper-line done"></div>
+          </div>
+          <div class="stepper-step">
+            <div class="stepper-node">
+              <div class="stepper-circle active">3</div>
+              <div class="stepper-label active">Shipping</div>
+            </div>
+            <div class="stepper-line"></div>
+          </div>
+          <div class="stepper-step">
+            <div class="stepper-node">
+              <div class="stepper-circle">4</div>
+              <div class="stepper-label">Payment</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Step 4 of 4 — Payment</div>
+        <div class="stepper">
+          <div class="stepper-step">
+            <div class="stepper-node">
+              <div class="stepper-circle done">✓</div>
+              <div class="stepper-label done">Cart</div>
+            </div>
+            <div class="stepper-line done"></div>
+          </div>
+          <div class="stepper-step">
+            <div class="stepper-node">
+              <div class="stepper-circle done">✓</div>
+              <div class="stepper-label done">Information</div>
+            </div>
+            <div class="stepper-line done"></div>
+          </div>
+          <div class="stepper-step">
+            <div class="stepper-node">
+              <div class="stepper-circle done">✓</div>
+              <div class="stepper-label done">Shipping</div>
+            </div>
+            <div class="stepper-line done"></div>
+          </div>
+          <div class="stepper-step">
+            <div class="stepper-node">
+              <div class="stepper-circle active">4</div>
+              <div class="stepper-label active">Payment</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notice notice-warning" style="margin-top:var(--sp-4)">
+        <span class="notice-icon">⚠</span>
+        <div class="notice-body">
+          <div class="notice-title">Shopify Standard Plan limitation</div>
+          <div class="notice-text">The stepper above reflects the intended design. On Standard plan, Shopify's checkout stepper cannot be fully customised — only logo, button colour, and background colour are editable via the checkout editor. Full stepper styling (fonts, step labels, indicator shapes) requires Shopify Plus. Launch with Standard checkout branding; upgrade path is documented.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 16. DATA TABLE & STAT CARDS ===== -->
+    <section class="ds-section" id="datatable">
+      <div class="ds-section-header">
+        <div class="ds-section-num">16</div>
+        <h2 class="ds-section-title">Data Table & Stat Cards</h2>
+        <p class="ds-section-desc">Used in admin views, order history, and any data-dense surface. Stat cards use Cormorant Garamond for the headline number — large display figures feel editorial, not clinical. Sparkbar for trend at a glance.</p>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Stat Cards</div>
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-label">Revenue (30d)</div>
+            <div class="stat-value">$8,240</div>
+            <div class="stat-delta up">↑ 12.4% vs last month</div>
+            <div class="stat-spark">
+              <div class="stat-spark-bar" style="height:40%"></div>
+              <div class="stat-spark-bar" style="height:55%"></div>
+              <div class="stat-spark-bar" style="height:45%"></div>
+              <div class="stat-spark-bar" style="height:70%"></div>
+              <div class="stat-spark-bar" style="height:60%"></div>
+              <div class="stat-spark-bar" style="height:80%"></div>
+              <div class="stat-spark-bar active" style="height:100%"></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Orders (30d)</div>
+            <div class="stat-value">314</div>
+            <div class="stat-delta up">↑ 8.1% vs last month</div>
+            <div class="stat-spark">
+              <div class="stat-spark-bar" style="height:50%"></div>
+              <div class="stat-spark-bar" style="height:60%"></div>
+              <div class="stat-spark-bar" style="height:50%"></div>
+              <div class="stat-spark-bar" style="height:75%"></div>
+              <div class="stat-spark-bar" style="height:65%"></div>
+              <div class="stat-spark-bar" style="height:90%"></div>
+              <div class="stat-spark-bar active" style="height:100%"></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Avg Order Value</div>
+            <div class="stat-value">$26.24</div>
+            <div class="stat-delta down">↓ 2.3% vs last month</div>
+            <div class="stat-spark">
+              <div class="stat-spark-bar" style="height:80%"></div>
+              <div class="stat-spark-bar" style="height:90%"></div>
+              <div class="stat-spark-bar" style="height:85%"></div>
+              <div class="stat-spark-bar" style="height:70%"></div>
+              <div class="stat-spark-bar" style="height:75%"></div>
+              <div class="stat-spark-bar" style="height:72%"></div>
+              <div class="stat-spark-bar active" style="height:68%"></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Conversion Rate</div>
+            <div class="stat-value">3.8%</div>
+            <div class="stat-delta neutral">→ No change</div>
+            <div class="stat-spark">
+              <div class="stat-spark-bar" style="height:65%"></div>
+              <div class="stat-spark-bar" style="height:70%"></div>
+              <div class="stat-spark-bar" style="height:68%"></div>
+              <div class="stat-spark-bar" style="height:72%"></div>
+              <div class="stat-spark-bar" style="height:69%"></div>
+              <div class="stat-spark-bar" style="height:71%"></div>
+              <div class="stat-spark-bar active" style="height:70%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Order History Table</div>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Order</th>
+                <th>Customer</th>
+                <th>Products</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="td-mono">#SNS-4831</span></td>
+                <td><div class="td-primary"><div class="data-table .td-img" style="width:32px;height:32px;background:var(--sns-forest-lite);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--sns-forest);font-family:var(--font-body);font-weight:500">S</div>Sarah M.</div></td>
+                <td>TKTX 40% × 2, Zensa × 1</td>
+                <td><span class="td-mono">Jun 04, 2026</span></td>
+                <td><span class="badge badge-forest badge-dot">Fulfilled</span></td>
+                <td><span class="td-mono">$82.98</span></td>
+              </tr>
+              <tr>
+                <td><span class="td-mono">#SNS-4830</span></td>
+                <td><div class="td-primary"><div style="width:32px;height:32px;background:var(--sns-gold-lite);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--sns-gold);font-family:var(--font-body);font-weight:500">J</div>James K.</div></td>
+                <td>Hush Numbing Spray × 3</td>
+                <td><span class="td-mono">Jun 04, 2026</span></td>
+                <td><span class="badge badge-stone badge-dot">Processing</span></td>
+                <td><span class="td-mono">$59.97</span></td>
+              </tr>
+              <tr>
+                <td><span class="td-mono">#SNS-4829</span></td>
+                <td><div class="td-primary"><div style="width:32px;height:32px;background:var(--sns-blue-lite);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--sns-blue-info);font-family:var(--font-body);font-weight:500">A</div>Alex T.</div></td>
+                <td>Dr. Numb 5% × 1, BLT × 2</td>
+                <td><span class="td-mono">Jun 03, 2026</span></td>
+                <td><span class="badge badge-forest badge-dot">Fulfilled</span></td>
+                <td><span class="td-mono">$74.97</span></td>
+              </tr>
+              <tr>
+                <td><span class="td-mono">#SNS-4828</span></td>
+                <td><div class="td-primary"><div style="width:32px;height:32px;background:var(--sns-red-lite);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--sns-red);font-family:var(--font-body);font-weight:500">M</div>Maria R.</div></td>
+                <td>Zensa 30g × 2</td>
+                <td><span class="td-mono">Jun 03, 2026</span></td>
+                <td><span class="badge badge-red">Refunded</span></td>
+                <td><span class="td-mono" style="text-decoration:line-through;color:var(--sns-stone-300)">$59.98</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 17. PRODUCT DETAIL PAGE ===== -->
+    <section class="ds-section" id="pdp">
+      <div class="ds-section-header">
+        <div class="ds-section-num">17</div>
+        <h2 class="ds-section-title">Product Detail Page</h2>
+        <p class="ds-section-desc">Full PDP layout. 5-image gallery with lightbox. Tabbed content panel (Description, Ingredients, How to Use, Warnings, Shipping). Reviews imported via Judge.me or Stamped.io CSV. Related products strip below the fold.</p>
+      </div>
+
+      <div class="ds-sub">
+        <div class="ds-sub-title">Full PDP Layout</div>
+        <div class="pdp-layout">
+
+          <!-- Gallery col -->
+          <div class="pdp-gallery">
+            <div class="pdp-hero-img">
+              T
+              <div class="pdp-gallery-nav">
+                <div class="pdp-gallery-dot active"></div>
+                <div class="pdp-gallery-dot"></div>
+                <div class="pdp-gallery-dot"></div>
+                <div class="pdp-gallery-dot"></div>
+                <div class="pdp-gallery-dot"></div>
+              </div>
+            </div>
+            <div class="pdp-thumbs">
+              <div class="pdp-thumb active">T</div>
+              <div class="pdp-thumb" style="font-size:var(--text-sm);color:var(--sns-stone-200)">↺</div>
+              <div class="pdp-thumb" style="font-size:var(--text-sm)">≡</div>
+              <div class="pdp-thumb" style="background:var(--sns-forest-lite)">✦</div>
+              <div class="pdp-thumb" style="background:var(--sns-cream-deep)">⬚</div>
+            </div>
+          </div>
+
+          <!-- Info col -->
+          <div class="pdp-info">
+            <div class="pdp-breadcrumb">Shop All <span>›</span> Before Session <span>›</span> Numbing Cream</div>
+            <div class="pdp-brand-badge">TKTX</div>
+            <div class="pdp-name">40% Numbing Cream</div>
+            <div class="pdp-rating-row">
+              <span class="stars" style="font-size:13px">★★★★★</span>
+              <span class="rating-count">(248 reviews)</span>
+              <a href="#reviews" style="font-size:11px;color:var(--sns-forest);text-decoration:none;font-family:var(--font-mono);letter-spacing:var(--tracking-wider)">See all →</a>
+            </div>
+            <div class="pdp-price-row">
+              <span class="pdp-price">$24.99</span>
+              <span class="pdp-price-was">$29.99</span>
+              <span class="badge badge-gold">Sale</span>
+            </div>
+            <div class="pdp-shipping-note">✓ Free shipping on orders over $100</div>
+
+            <div class="pdp-variants">
+              <div class="pdp-variants-label">Size</div>
+              <div class="pdp-variant-opts">
+                <div class="pdp-variant-opt active">10g</div>
+                <div class="pdp-variant-opt">30g</div>
+                <div class="pdp-variant-opt">100g</div>
+              </div>
+            </div>
+
+            <div class="pdp-actions">
+              <div class="qty-stepper">
+                <button class="qty-btn">−</button>
+                <span class="qty-val">1</span>
+                <button class="qty-btn">+</button>
+              </div>
+              <button class="pdp-atc">Add to Cart — $24.99</button>
+              <button class="btn-icon">♡</button>
+            </div>
+
+            <div class="pdp-trust">
+              <div class="pdp-trust-item"><span class="pdp-trust-icon">🔒</span> Secure checkout</div>
+              <div class="pdp-trust-item"><span class="pdp-trust-icon">↩</span> 30-day returns</div>
+              <div class="pdp-trust-item"><span class="pdp-trust-icon">📦</span> Ships in 24h</div>
+            </div>
+
+            <div class="pdp-tabs">
+              <button class="pdp-tab active">Description</button>
+              <button class="pdp-tab">Ingredients</button>
+              <button class="pdp-tab">How to Use</button>
+              <button class="pdp-tab">Warnings</button>
+              <button class="pdp-tab">Shipping</button>
+            </div>
+
+            <div style="font-size:var(--text-sm);color:var(--sns-stone-500);line-height:var(--leading-loose)">
+              Formulated with 4% lidocaine for fast-acting, long-lasting numbing relief. TKTX 40% is trusted by professional tattoo artists worldwide for its consistent anaesthetic performance. Suitable for all skin types. Apply 45–60 minutes before your session and cover with cling wrap for maximum effectiveness.
+              <br><br>
+              <strong style="color:var(--sns-ink);font-weight:500">Key benefits:</strong> Fast-acting within 20 minutes · Lasts up to 4 hours · Non-greasy formula · Dermatologist tested · Safe for sensitive skin.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub mt-8" id="reviews">
+        <div class="ds-sub-title">Reviews Module</div>
+        <div class="review-summary">
+          <div>
+            <div class="review-big-score">4.9</div>
+            <div class="stars" style="font-size:16px;margin-top:4px">★★★★★</div>
+            <div style="font-family:var(--font-mono);font-size:10px;color:var(--sns-stone-400);margin-top:4px;letter-spacing:var(--tracking-wider)">248 reviews</div>
+          </div>
+          <div class="review-bars">
+            <div class="review-bar-row"><span class="review-bar-label">5</span><div class="review-bar-track"><div class="review-bar-fill" style="width:88%"></div></div><span class="review-bar-count">219</span></div>
+            <div class="review-bar-row"><span class="review-bar-label">4</span><div class="review-bar-track"><div class="review-bar-fill" style="width:8%"></div></div><span class="review-bar-count">20</span></div>
+            <div class="review-bar-row"><span class="review-bar-label">3</span><div class="review-bar-track"><div class="review-bar-fill" style="width:2%"></div></div><span class="review-bar-count">5</span></div>
+            <div class="review-bar-row"><span class="review-bar-label">2</span><div class="review-bar-track"><div class="review-bar-fill" style="width:1%"></div></div><span class="review-bar-count">3</span></div>
+            <div class="review-bar-row"><span class="review-bar-label">1</span><div class="review-bar-track"><div class="review-bar-fill" style="width:0%"></div></div><span class="review-bar-count">1</span></div>
+          </div>
+          <button class="btn btn-secondary" style="flex-shrink:0">Write a Review</button>
+        </div>
+        <div>
+          <div class="review-card">
+            <div class="review-header">
+              <div>
+                <div class="review-author">Sarah M.</div>
+                <div class="stars" style="font-size:12px">★★★★★</div>
+              </div>
+              <div class="review-date">May 28, 2026</div>
+            </div>
+            <div class="review-text">Absolute game changer. I've tried a dozen numbing creams and TKTX 40% is by far the most effective. Applied 45 mins before my arm sleeve session — barely felt anything for the first 3 hours.</div>
+            <div class="review-verified">✓ Verified purchase</div>
+          </div>
+          <div class="review-card">
+            <div class="review-header">
+              <div>
+                <div class="review-author">James K.</div>
+                <div class="stars" style="font-size:12px">★★★★★</div>
+              </div>
+              <div class="review-date">May 19, 2026</div>
+            </div>
+            <div class="review-text">As a tattoo artist I recommend this to all my clients for long sessions. Consistent results, no skin reaction issues, and the price point is great for bulk ordering.</div>
+            <div class="review-verified">✓ Verified purchase</div>
+          </div>
+        </div>
       </div>
     </section>
 
