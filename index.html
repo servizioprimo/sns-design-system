@@ -4,9 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Signature Numbing Supplies — Design System</title>
+<!-- 
+  FONT IMPLEMENTATION NOTE FOR DAWN:
+  Cormorant Garamond and DM Sans are NOT in Shopify's native font library.
+  Two compliant options:
+  A) Self-host via Shopify Files: upload .woff2 files, reference in theme.liquid
+  B) Map to nearest Shopify library equivalents:
+     - Cormorant Garamond → "Libre Baskerville" or "Playfair Display" (closest serifs in Shopify library)
+     - DM Sans → "Assistant" or "Nunito Sans" (closest geometric sans)
+     - DM Mono → "Roboto Mono" or "IBM Plex Mono" (closest monospace)
+  Option A is recommended — preserves the exact SNS brand voice.
+  Google Fonts are avoided: GDPR consent requirements + ~300ms render-blocking latency.
+  Self-hosted fonts via Shopify CDN add zero latency and have no GDPR implications.
+-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<!-- NOTE: Above Google Fonts link is for DS preview only. In Dawn, replace with self-hosted .woff2 files via Shopify Files. -->
 <style>
 /* ============================================================
    SNS DESIGN SYSTEM — CSS CUSTOM PROPERTIES
@@ -37,9 +51,16 @@
   --sns-blue-lite:   #EBF3FB;
 
   /* --- TYPOGRAPHY --- */
-  --font-display:  'Cormorant Garamond', Georgia, serif;
-  --font-body:     'DM Sans', system-ui, sans-serif;
-  --font-mono:     'DM Mono', 'Courier New', monospace;
+  /* FONT STACK — DS preview uses Google Fonts (preview only).
+     Dawn implementation: self-host via Shopify Files → upload .woff2 → reference in theme.liquid
+     Shopify library fallbacks if self-hosting not viable:
+       Display → 'Playfair Display' (Shopify library) or Georgia
+       Body    → 'Assistant' (Shopify library) or system-ui
+       Mono    → 'Roboto Mono' (Shopify library) or 'Courier New'
+  */
+  --font-display:  'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-body:     'DM Sans', 'Assistant', system-ui, sans-serif;
+  --font-mono:     'DM Mono', 'Roboto Mono', 'Courier New', monospace;
 
   --text-xs:    0.6875rem;  /* 11px */
   --text-sm:    0.8125rem;  /* 13px */
@@ -3306,6 +3327,11 @@ body {
       <div class="ds-hero-eyebrow">Design System · v1.0 · June 2026</div>
       <h1 class="ds-hero-title">Signature<br><em>Numbing</em><br>Supplies</h1>
       <p class="ds-hero-desc">A clinical luxury design system for the premium tattoo supply store. Light, precise, and authoritative — built on the aesthetic of high-end apothecary and medical-grade skincare.</p>
+      <div style="display:flex;gap:var(--sp-4);flex-wrap:wrap;margin-top:var(--sp-2)">
+        <div style="display:flex;align-items:center;gap:var(--sp-2);font-family:var(--font-mono);font-size:10px;color:var(--sns-stone-500)"><span style="width:10px;height:10px;border-radius:50%;background:var(--sns-forest);display:inline-block"></span> Native to Dawn — no code needed</div>
+        <div style="display:flex;align-items:center;gap:var(--sp-2);font-family:var(--font-mono);font-size:10px;color:var(--sns-stone-500)"><span style="width:10px;height:10px;border-radius:50%;background:var(--sns-gold);display:inline-block"></span> Requires Liquid/CSS edit or free app</div>
+        <div style="display:flex;align-items:center;gap:var(--sp-2);font-family:var(--font-mono);font-size:10px;color:var(--sns-stone-500)"><span style="width:10px;height:10px;border-radius:50%;background:var(--sns-red);display:inline-block"></span> Requires paid app or significant dev</div>
+      </div>
       <div class="ds-hero-meta">
         <div class="ds-hero-meta-item">
           <div class="ds-hero-meta-label">Store</div>
@@ -3368,6 +3394,13 @@ body {
         <div class="ds-section-num">02</div>
         <h2 class="ds-section-title">Typography</h2>
         <p class="ds-section-desc">Three-font system: Cormorant Garamond for editorial display, DM Sans for functional UI, DM Mono for labels and data. Never mix more than two in a single component.</p>
+        <div class="notice notice-warning" style="margin-top:var(--sp-4)">
+          <span class="notice-icon">⚠</span>
+          <div class="notice-body">
+            <div class="notice-title">Dawn font implementation — self-hosting required</div>
+            <div class="notice-text">Cormorant Garamond, DM Sans, and DM Mono are not in Shopify's native font library. <strong>Recommended:</strong> upload .woff2 files to Shopify Files, declare them in <code style="font-family:var(--font-mono);font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:2px">theme.liquid</code> using @font-face, and reference via CSS variables. Avoid loading from Google Fonts in production — adds ~300ms render-blocking latency and requires GDPR consent banner. <strong>Shopify library fallbacks</strong> if self-hosting isn't viable: Playfair Display (display), Assistant (body), Roboto Mono (mono).</div>
+          </div>
+        </div>
       </div>
 
       <div class="ds-sub">
@@ -3615,6 +3648,11 @@ body {
         <div class="ds-section-num">07</div>
         <h2 class="ds-section-title">Navigation</h2>
         <p class="ds-section-desc">Desktop header with brand filter strip and category tabs. Mobile collapses to a persistent bottom nav — never hides on scroll.</p>
+        <div style="margin-top:var(--sp-3);display:flex;gap:var(--sp-2);flex-wrap:wrap">
+          <span style="font-family:var(--font-mono);font-size:9px;background:var(--sns-forest-lite);color:var(--sns-forest);padding:2px 8px;border-radius:var(--radius-full);letter-spacing:var(--tracking-wider);text-transform:uppercase">● Header — Dawn native, theme editor</span>
+          <span style="font-family:var(--font-mono);font-size:9px;background:var(--sns-gold-lite);color:var(--sns-gold);padding:2px 8px;border-radius:var(--radius-full);letter-spacing:var(--tracking-wider);text-transform:uppercase">● Brand filter strip — CSS + Liquid edit</span>
+          <span style="font-family:var(--font-mono);font-size:9px;background:var(--sns-gold-lite);color:var(--sns-gold);padding:2px 8px;border-radius:var(--radius-full);letter-spacing:var(--tracking-wider);text-transform:uppercase">● Bottom nav — Liquid section required</span>
+        </div>
       </div>
 
       <div class="ds-sub">
@@ -3750,6 +3788,12 @@ body {
         <div class="ds-section-num">09</div>
         <h2 class="ds-section-title">Cart Drawer</h2>
         <p class="ds-section-desc">Slides in from the right. Free shipping bar at $100 threshold. Express checkout buttons visible above fold on mobile. Checkout CTA shows live total.</p>
+        <div style="margin-top:var(--sp-3);display:flex;gap:var(--sp-2);flex-wrap:wrap">
+          <span style="font-family:var(--font-mono);font-size:9px;background:var(--sns-forest-lite);color:var(--sns-forest);padding:2px 8px;border-radius:var(--radius-full);letter-spacing:var(--tracking-wider);text-transform:uppercase">● Cart drawer — Dawn native</span>
+          <span style="font-family:var(--font-mono);font-size:9px;background:var(--sns-gold-lite);color:var(--sns-gold);padding:2px 8px;border-radius:var(--radius-full);letter-spacing:var(--tracking-wider);text-transform:uppercase">● Shipping bar — Liquid + CSS edit</span>
+          <span style="font-family:var(--font-mono);font-size:9px;background:var(--sns-forest-lite);color:var(--sns-forest);padding:2px 8px;border-radius:var(--radius-full);letter-spacing:var(--tracking-wider);text-transform:uppercase">● Express checkout — Dawn native (Shop Pay, Apple Pay, G Pay)</span>
+          <span style="font-family:var(--font-mono);font-size:9px;background:var(--sns-red-lite);color:var(--sns-red);padding:2px 8px;border-radius:var(--radius-full);letter-spacing:var(--tracking-wider);text-transform:uppercase">● Cross-sell logic — app or significant Liquid dev</span>
+        </div>
       </div>
 
       <div class="ds-grid-2 gap-4" style="align-items:start">
@@ -3886,9 +3930,16 @@ body {
       <div class="ds-section-header">
         <div class="ds-section-num">11</div>
         <h2 class="ds-section-title">Search & Filter</h2>
-        <p class="ds-section-desc">Shopify Search & Discovery app handles predictive search. Only Concentration requires manual product tagging. Synonym groups: numbing/anaesthetic/anesthetic, cream/gel/lotion.</p>
+        <p class="ds-section-desc">Shopify Search &amp; Discovery app (free) handles predictive search and filter configuration. Dawn's native filtering is basic — the app is required for the multi-attribute filter panel shown here. Only Concentration requires manual product tagging; all other filters (Brand, Category, Price, Availability, Size) are auto-populated from existing product data.</p>
       </div>
 
+      <div class="notice notice-info" style="margin-bottom:var(--sp-6)">
+        <span class="notice-icon">ℹ</span>
+        <div class="notice-body">
+          <div class="notice-title">Requires Shopify Search & Discovery app (free)</div>
+          <div class="notice-text">Dawn's built-in collection filtering supports only basic price and availability filters. The full multi-attribute filter panel (Brand, Category, Concentration, Size) requires the free Shopify Search &amp; Discovery app, configured in your Shopify admin under Sales Channels → Search &amp; Discovery. No Liquid editing needed — the app injects filter UI automatically.</div>
+        </div>
+      </div>
       <div class="ds-grid-2 gap-4" style="align-items:start">
         <div class="ds-flex-col">
           <div class="ds-sub-title">Search Bar</div>
@@ -4418,6 +4469,12 @@ body {
         <div class="ds-section-num">17</div>
         <h2 class="ds-section-title">Product Detail Page</h2>
         <p class="ds-section-desc">Full PDP layout. 5-image gallery with lightbox. Tabbed content panel (Description, Ingredients, How to Use, Warnings, Shipping). Reviews imported via Judge.me or Stamped.io CSV. Related products strip below the fold.</p>
+        <div style="margin-top:var(--sp-3);display:flex;gap:var(--sp-2);flex-wrap:wrap">
+          <span style="font-family:var(--font-mono);font-size:9px;background:var(--sns-forest-lite);color:var(--sns-forest);padding:2px 8px;border-radius:var(--radius-full);letter-spacing:var(--tracking-wider);text-transform:uppercase">● Gallery — Dawn native (media-gallery.js)</span>
+          <span style="font-family:var(--font-mono);font-size:9px;background:var(--sns-gold-lite);color:var(--sns-gold);padding:2px 8px;border-radius:var(--radius-full);letter-spacing:var(--tracking-wider);text-transform:uppercase">● Tabs → Accordion on mobile — Liquid section or app block</span>
+          <span style="font-family:var(--font-mono);font-size:9px;background:var(--sns-red-lite);color:var(--sns-red);padding:2px 8px;border-radius:var(--radius-full);letter-spacing:var(--tracking-wider);text-transform:uppercase">● Reviews — requires Judge.me or Stamped app</span>
+          <span style="font-family:var(--font-mono);font-size:9px;background:var(--sns-gold-lite);color:var(--sns-gold);padding:2px 8px;border-radius:var(--radius-full);letter-spacing:var(--tracking-wider);text-transform:uppercase">● Sticky ATC bar — Liquid + JS required</span>
+        </div>
       </div>
 
       <div class="ds-sub">
@@ -4856,11 +4913,11 @@ body {
             </table>
 
             <div class="ds-sub-title mt-6">Implementation Note</div>
-            <div class="notice notice-info">
-              <span class="notice-icon">ℹ</span>
+            <div class="notice notice-warning">
+              <span class="notice-icon">⚠</span>
               <div class="notice-body">
-                <div class="notice-title">Dawn theme — Liquid edit required</div>
-                <div class="notice-text">The cross-sell block sits between <code style="font-family:var(--font-mono);font-size:11px;background:var(--sns-stone-100);padding:1px 4px;border-radius:2px">cart-items</code> and <code style="font-family:var(--font-mono);font-size:11px;background:var(--sns-stone-100);padding:1px 4px;border-radius:2px">cart-footer</code> in Dawn's <code style="font-family:var(--font-mono);font-size:11px;background:var(--sns-stone-100);padding:1px 4px;border-radius:2px">cart-drawer.liquid</code>. Logic is a Liquid conditional on cart item tags. The featured collection block in Dawn's theme settings can also be used as a no-code approximation, though it doesn't support tag-based conditional logic.</div>
+                <div class="notice-title">Dawn does not support this natively — 2 options</div>
+                <div class="notice-text"><strong>Option A (No-code approximation):</strong> Dawn's built-in "Featured collection" block in cart drawer settings shows a static collection — no conditional logic, always the same products regardless of cart contents. Quick to set up, limited intelligence.<br><br><strong>Option B (Full conditional logic — Liquid + JS):</strong> Edit <code style="font-family:var(--font-mono);font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:2px">cart-drawer.liquid</code> to read cart item tags and conditionally render a different product. This is significant custom development — not a simple edit. Alternatively, use a cross-sell app (e.g. Frequently Bought Together, Monster Upsells) which integrates via App Blocks with zero Liquid editing required.</div>
               </div>
             </div>
 
